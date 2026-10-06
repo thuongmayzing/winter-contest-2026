@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Winter Contest 2026</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .title h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .title p {
+      margin: 8px 0 0;
+      color: #6b7280;
+    }
+
+    /* LOGIN */
+
+    #login-screen {
+      max-width: 430px;
+      margin: 80px auto;
+      background: white;
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    }
+
+    #login-screen h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+      margin-top: 15px;
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: #6366f1;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #111827;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .error {
+      color: #dc2626;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    /* DASHBOARD */
+
+    #dashboard {
+      display: none;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+    }
+
+    .card-title {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    /* PERSONAL SCORE */
+
+    .score-main {
+      text-align: center;
+      padding: 20px 0 25px;
+    }
+
+    .score-label {
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .score-value {
+      font-size: 48px;
+      font-weight: 900;
+      margin-top: 5px;
+    }
+
+    .rank-value {
+      font-size: 26px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .level {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 7px 14px;
+      background: #eef2ff;
+      color: #4f46e5;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .progress-wrapper {
+      margin-top: 20px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 7px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #111827;
+      border-radius: 999px;
+      transition: width 0.5s ease;
+    }
+
+    .next-reward {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9fafb;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .next-reward strong {
+      font-size: 18px;
+    }
+
+    .countdown {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    /* LEADERBOARD */
+
+    .leaderboard {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .leader-row {
+      display: grid;
+      grid-template-columns: 55px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      min-height: 62px;
+      padding: 9px 12px;
+      border-radius: 13px;
+      background: #f9fafb;
+      transition: transform 0.15s ease;
+    }
+
+    .leader-row:hover {
+      transform: translateY(-1px);
+    }
+
+    .leader-rank {
+      font-weight: 800;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    .leader-user {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .avatar {
+      width: 39px;
+      height: 39px;
+      min-width: 39px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 23px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .participant {
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .you-badge {
+      display: inline-block;
+      margin-left: 5px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: #111827;
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      vertical-align: middle;
+    }
+
+    .points {
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* YOU */
+
+    .leader-row.you {
+      background: #eef2ff;
+      border: 2px solid #6366f1;
+      padding: 7px 10px;
+      box-shadow: 0 5px 18px rgba(99,102,241,0.12);
+    }
+
+    .leader-row.you .leader-rank {
+      color: #4f46e5;
+    }
+
+    .leader-row.you .participant {
+      color: #3730a3;
+    }
+
+    /* SEPARATOR */
+
+    .leader-separator {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 13px;
+      padding: 4px 0;
+    }
+
+    .loading {
+      text-align: center;
+      color: #6b7280;
+      padding: 20px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 20px 12px;
+      }
+
+      .title h1 {
+        font-size: 26px;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+
+      .card {
+        padding: 18px;
+        border-radius: 16px;
+      }
+
+      .score-value {
+        font-size: 40px;
+      }
+
+      .leader-row {
+        grid-template-columns: 45px 1fr auto;
+        padding: 8px;
+      }
+
+      .points {
+        font-size: 13px;
+      }
+
+      .avatar {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        font-size: 21px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- TITLE -->
+
+  <div class="title">
+
+```
+<h1>🏆 Winter Contest 2026</h1>
+
+<p>
+  Track your progress and compete with everyone
+</p>
+```
+
+  </div>
+
+  <!-- LOGIN -->
+
+  <div id="login-screen">
+
+```
+<h2>
+  Enter your User ID
+</h2>
+
+<input
+  id="user-id"
+  class="input"
+  type="text"
+  placeholder="Your User ID"
+  autocomplete="off"
+>
+
+<button
+  class="btn"
+  onclick="login()"
+>
+  View My Score
+</button>
+
+<div
+  id="login-error"
+  class="error"
+></div>
+```
+
+  </div>
+
+  <!-- DASHBOARD -->
+
+  <div id="dashboard">
+
+```
+<div class="dashboard-grid">
+
+
+  <!-- PERSONAL SCORE -->
+
+  <div class="card">
+
+    <div class="card-title">
+      📊 My Progress
+    </div>
+
+
+    <div
+      id="personal-loading"
+      class="loading"
+    >
+      Loading your score...
+    </div>
+
+
+    <div
+      id="personal-content"
+      style="display:none;"
+    >
+
+      <div class="score-main">
+
+        <div class="score-label">
+          Your Points
+        </div>
+
+        <div
+          id="stat-points"
+          class="score-value"
+        >
+          0
+        </div>
+
+
+        <div class="score-label">
+          Your Rank
+        </div>
+
+        <div
+          id="stat-rank"
+          class="rank-value"
+        >
+          #-
+        </div>
+
+
+        <div
+          id="stat-level"
+          class="level"
+        >
+          -
+        </div>
+
+      </div>
+
+
+      <div class="progress-wrapper">
+
+        <div class="progress-header">
+
+          <span id="current-level-text">
+            Current level
+          </span>
+
+          <span id="next-level-text">
+            Next level
+          </span>
+
+        </div>
+
+
+        <div class="progress-bar">
+
+          <div
+            id="progress-fill"
+            class="progress-fill"
+            style="width:0%"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="next-reward">
+
+        <div>
+          Next Reward
+        </div>
+
+        <strong id="next-reward">
+          -
+        </strong>
+
+      </div>
+
+
+      <div class="countdown">
+
+        Contest ends in:
+
+        <strong id="countdown">
+          --
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- LEADERBOARD -->
+
+  <div class="card">
+
+    <div class="card-title">
+      🏁 Leaderboard
+    </div>
+
+
+    <div
+      id="leaderboard"
+      class="leaderboard"
+    >
+
+      <div class="loading">
+        Loading leaderboard...
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+```
+
+  </div>
+
+</div>
+
+<script>
+
+
+/*
+ * =================================================
+ * CONFIG
+ * =================================================
+ */
+
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbx_qxUJv2jRQZ8SA9u8tYACaA-gtnTlK7TAG0y1SDLxWGwnpngatP3ajcYpo2bg9Jz_vg/exec";
+
+
+/*
+ * =================================================
+ * CONTEST END
+ * =================================================
+ *
+ * Giữ nguyên ngày bạn đang dùng.
+ *
+ * Nếu Winter Contest có ngày kết thúc khác,
+ * chỉ cần sửa dòng này.
+ */
+
+const CONTEST_END =
+  new Date(
+    "2026-06-24T23:59:59Z"
+  );
+
+
+/*
+ * =================================================
+ * LEVEL SYSTEM
+ * =================================================
+ */
+
+const LEVELS = [
+
+  {
+    points: 0,
+    reward: 0
+  },
+
+  {
+    points: 250,
+    reward: 50
+  },
+
+  {
+    points: 500,
+    reward: 100
+  },
+
+  {
+    points: 1000,
+    reward: 250
+  },
+
+  {
+    points: 2500,
+    reward: 750
+  },
+
+  {
+    points: 5000,
+    reward: 1750
+  },
+
+  {
+    points: 10000,
+    reward: 4000
+  },
+
+  {
+    points: 25000,
+    reward: 12500
+  },
+
+  {
+    points: 50000,
+    reward: 30000
+  },
+
+  {
+    points: 100000,
+    reward: 75000
+  },
+
+  {
+    points: 125000,
+    reward: 10000
+  }
+
+];
+
+
+/*
+ * =================================================
+ * GET CURRENT LEVEL
+ * =================================================
+ */
+
+function getLevel(points) {
+
+  let current =
+    LEVELS[0];
+
+
+  for (
+    const level of LEVELS
+  ) {
+
+    if (
+      points >= level.points
+    ) {
+
+      current =
+        level;
+
+    }
+
+  }
+
+
+  return current;
+
+}
+
+
+/*
+ * =================================================
+ * GET NEXT LEVEL
+ * =================================================
+ */
+
+function getNextLevel(points) {
+
+  for (
+    const level of LEVELS
+  ) {
+
+    if (
+      points < level.points
+    ) {
+
+      return level;
+
+    }
+
+  }
+
+
+  return null;
+
+}
+
+
+/*
+ * =================================================
+ * PARTICIPANT EMOJIS
+ * =================================================
+ */
+
+const PARTICIPANT_EMOJIS = [
+
+  "🚗",
+  "🏎️",
+  "🏍️",
+  "🛵",
+  "🚲",
+  "🐎",
+  "🐉",
+  "🦊",
+  "🐯",
+  "🦁",
+
+  "🐺",
+  "🐻",
+  "🐼",
+  "🐨",
+  "🐵",
+  "🐸",
+  "🦄",
+  "🐲",
+  "🦅",
+  "🦉",
+
+  "🐧",
+  "🦋",
+  "🐝",
+  "🐬",
+  "🐳",
+  "🦈",
+  "🐙",
+  "🦀",
+  "🦞",
+  "🦐",
+
+  "🐊",
+  "🐍",
+  "🦖",
+  "🐘",
+  "🦏",
+  "🦒",
+  "🦓",
+  "🦍",
+  "🐫",
+  "🦘",
+
+  "🚀",
+  "🛸",
+  "⚡",
+  "🔥",
+  "💎",
+  "🌟",
+  "🎯",
+  "🎮",
+  "👑",
+  "🏆"
+
+];
+
+
+function getParticipantEmoji(index) {
+
+  return PARTICIPANT_EMOJIS[
+    index %
+    PARTICIPANT_EMOJIS.length
+  ];
+
+}
+
+
+/*
+ * =================================================
+ * CURRENT USER
+ * =================================================
+ */
+
+let currentUserId = "";
+
+
+/*
+ * =================================================
+ * LOGIN
+ * =================================================
+ */
+
+function login() {
+
+  const input =
+    document.getElementById(
+      "user-id"
+    );
+
+
+  const userId =
+    input.value.trim();
+
+
+  const error =
+    document.getElementById(
+      "login-error"
+    );
+
+
+  error.textContent = "";
+
+
+  if (!userId) {
+
+    error.textContent =
+      "Please enter your User ID.";
+
+    return;
+
+  }
+
+
+  currentUserId =
+    userId;
+
+
+  document
+    .getElementById(
+      "login-screen"
+    )
+    .style.display =
+    "none";
+
+
+  document
+    .getElementById(
+      "dashboard"
+    )
+    .style.display =
+    "block";
+
+
+  loadPersonalScore(
+    userId
+  );
+
+
+  loadLeaderboard(
+    userId
+  );
+
+}
+
+
+/*
+ * =================================================
+ * ENTER KEY LOGIN
+ * =================================================
+ */
+
+document
+  .getElementById(
+    "user-id"
+  )
+  .addEventListener(
+    "keydown",
+    function(e) {
+
+      if (
+        e.key === "Enter"
+      ) {
+
+        login();
+
+      }
+
+    }
+  );
+
+
+/*
+ * =================================================
+ * PERSONAL SCORE
+ * =================================================
+ */
+
+async function loadPersonalScore(
+  userId
+) {
+
+  const loading =
+    document.getElementById(
+      "personal-loading"
+    );
+
+
+  const content =
+    document.getElementById(
+      "personal-content"
+    );
+
+
+  try {
+
+    const url =
+      API_URL +
+      "?id=" +
+      encodeURIComponent(
+        userId
+      );
+
+
+    const response =
+      await fetch(
+        url
+      );
+
+
+    if (
+      !response.ok
+    ) {
+
+      throw new Error(
+        "API error"
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if (
+      !data ||
+      data.error
+    ) {
+
+      throw new Error(
+        data?.error ||
+        "User not found"
+      );
+
+    }
+
+
+    renderPersonalScore(
+      data
+    );
+
+
+    loading.style.display =
+      "none";
+
+
+    content.style.display =
+      "block";
+
+
+  } catch (err) {
+
+    console.error(
+      err
+    );
+
+
+    loading.textContent =
+      "Unable to load your score.";
+
+  }
+
+}
+
+
+/*
+ * =================================================
+ * RENDER PERSONAL SCORE
+ * =================================================
+ */
+
+function renderPersonalScore(
+  data
+) {
+
+  const points =
+    Number(
+      data.points ??
+      data.score ??
+      0
+    );
+
+
+  const rank =
+    Number(
+      data.rank ||
+      0
+    );
+
+
+  const level =
+    getLevel(
+      points
+    );
+
+
+  const next =
+    getNextLevel(
+      points
+    );
+
+
+  /*
+   * POINTS
+   */
+
+  document
+    .getElementById(
+      "stat-points"
+    )
+    .textContent =
+    points.toLocaleString();
+
+
+  /*
+   * RANK
+   */
+
+  document
+    .getElementById(
+      "stat-rank"
+    )
+    .textContent =
+    "#" +
+    rank;
+
+
+  /*
+   * LEVEL
+   */
+
+  document
+    .getElementById(
+      "stat-level"
+    )
+    .textContent =
+    "Level " +
+    level.points.toLocaleString();
+
+
+  /*
+   * PROGRESS
+   */
+
+  if (next) {
+
+    const range =
+      next.points -
+      level.points;
+
+
+    const progress =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          (
+            (
+              points -
+              level.points
+            ) /
+            range
+          ) *
+          100
+        )
+      );
+
+
+    document
+      .getElementById(
+        "progress-fill"
+      )
+      .style.width =
+      progress +
+      "%";
+
+
+    document
+      .getElementById(
+        "current-level-text"
+      )
+      .textContent =
+      level.points.toLocaleString();
+
+
+    document
+      .getElementById(
+        "next-level-text"
+      )
+      .textContent =
+      next.points.toLocaleString();
+
+
+    document
+      .getElementById(
+        "next-reward"
+      )
+      .textContent =
+      "$" +
+      next.reward.toLocaleString();
+
+
+  } else {
+
+    document
+      .getElementById(
+        "progress-fill"
+      )
+      .style.width =
+      "100%";
+
+
+    document
+      .getElementById(
+        "current-level-text"
+      )
+      .textContent =
+      points.toLocaleString();
+
+
+    document
+      .getElementById(
+        "next-level-text"
+      )
+      .textContent =
+      "MAX";
+
+
+    document
+      .getElementById(
+        "next-reward"
+      )
+      .textContent =
+      "Maximum Reward";
+
+  }
+
+}
+
+
+/*
+ * =================================================
+ * LEADERBOARD API
+ * =================================================
+ *
+ * IMPORTANT:
+ *
+ * Không còn ACCESS_EMAIL.
+ *
+ * Request:
+ *
+ * /exec
+ * ?mode=leaderboard
+ * &callback=leaderboardCallback_xxx
+ *
+ */
+
+function loadLeaderboard(
+  userId
+) {
+
+  const callbackName =
+    "leaderboardCallback_" +
+    Date.now();
+
+
+  /*
+   * JSONP CALLBACK
+   */
+
+  window[callbackName] =
+    function(data) {
+
+      try {
+
+        if (
+          !data ||
+          data.error
+        ) {
+
+          throw new Error(
+            data?.error ||
+            "Leaderboard error"
+          );
+
+        }
+
+
+        renderLeaderboard(
+          data.leaderboard ||
+          [],
+          userId
+        );
+
+
+      } catch (err) {
+
+        console.error(
+          err
+        );
+
+
+        document
+          .getElementById(
+            "leaderboard"
+          )
+          .innerHTML =
+          '<div class="loading">' +
+          'Unable to load leaderboard.' +
+          '</div>';
+
+
+      } finally {
+
+        delete window[
+          callbackName
+        ];
+
+      }
+
+    };
+
+
+  /*
+   * CREATE SCRIPT
+   */
+
+  const script =
+    document.createElement(
+      "script"
+    );
+
+
+  /*
+   * IMPORTANT:
+   *
+   * mode=leaderboard
+   *
+   * Backend sẽ route sang
+   * handleLeaderboard()
+   */
+
+  script.src =
+    API_URL +
+    "?mode=leaderboard" +
+    "&callback=" +
+    callbackName;
+
+
+  /*
+   * ERROR
+   */
+
+  script.onerror =
+    function() {
+
+      document
+        .getElementById(
+          "leaderboard"
+        )
+        .innerHTML =
+        '<div class="loading">' +
+        'Unable to load leaderboard.' +
+        '</div>';
+
+
+      delete window[
+        callbackName
+      ];
+
+    };
+
+
+  /*
+   * APPEND
+   */
+
+  document.body.appendChild(
+    script
+  );
+
+}
+
+
+/*
+ * =================================================
+ * RENDER LEADERBOARD
+ * =================================================
+ */
+
+function renderLeaderboard(
+  rows,
+  userId
+) {
+
+  const container =
+    document.getElementById(
+      "leaderboard"
+    );
+
+
+  container.innerHTML =
+    "";
+
+
+  if (
+    !Array.isArray(rows) ||
+    rows.length === 0
+  ) {
+
+    container.innerHTML =
+      '<div class="loading">' +
+      'No leaderboard data.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  /*
+   * NORMALIZE
+   */
+
+  const normalized =
+    rows.map(
+      function(row, index) {
+
+        return {
+
+          rank:
+            Number(
+              row.rank ??
+              index + 1
+            ),
+
+          email:
+            String(
+              row.email ??
+              row.userId ??
+              row.id ??
+              ""
+            ).trim(),
+
+          points:
+            Number(
+              row.points ??
+              row.score ??
+              0
+            ),
+
+          participantIndex:
+            index
+
+        };
+
+      }
+    );
+
+
+  /*
+   * SORT
+   */
+
+  normalized.sort(
+    function(a, b) {
+
+      if (
+        a.rank !==
+        b.rank
+      ) {
+
+        return (
+          a.rank -
+          b.rank
+        );
+
+      }
+
+
+      return (
+        b.points -
+        a.points
+      );
+
+    }
+  );
+
+
+  /*
+   * REBUILD PARTICIPANT INDEX
+   */
+
+  normalized.forEach(
+    function(row, index) {
+
+      row.participantIndex =
+        index;
+
+    }
+  );
+
+
+  /*
+   * FIND YOU
+   */
+
+  const normalizedUser =
+    String(
+      userId || ""
+    )
+    .trim()
+    .toLowerCase();
+
+
+  let youIndex =
+    normalized.findIndex(
+      function(row) {
+
+        return (
+          row.email
+            .trim()
+            .toLowerCase() ===
+          normalizedUser
+        );
+
+      }
+    );
+
+
+  /*
+   * FALLBACK
+   */
+
+  if (
+    youIndex === -1
+  ) {
+
+    youIndex =
+      normalized.findIndex(
+        function(row) {
+
+          return String(
+            row.email || ""
+          )
+          .toLowerCase()
+          .includes(
+            normalizedUser
+          );
+
+        }
+      );
+
+  }
+
+
+  /*
+   * DISPLAY
+   */
+
+  const topCount =
+    5;
+
+
+  let displayRows =
+    [];
+
+
+  /*
+   * YOU NOT FOUND
+   */
+
+  if (
+    youIndex === -1
+  ) {
+
+    displayRows =
+      normalized.slice(
+        0,
+        topCount
+      );
+
+  }
+
+
+  /*
+   * YOU IN TOP 5
+   */
+
+  else if (
+    youIndex <
+    topCount
+  ) {
+
+    displayRows =
+      normalized.slice(
+        0,
+        topCount
+      );
+
+  }
+
+
+  /*
+   * YOU OUTSIDE TOP 5
+   */
+
+  else {
+
+    /*
+     * TOP 5
+     */
+
+    displayRows =
+      normalized.slice(
+        0,
+        topCount
+      );
+
+
+    /*
+     * SEPARATOR
+     */
+
+    displayRows.push({
+      separator: true
+    });
+
+
+    /*
+     * ABOVE YOU
+     */
+
+    displayRows.push(
+      normalized[
+        youIndex - 1
+      ]
+    );
+
+
+    /*
+     * YOU
+     */
+
+    displayRows.push(
+      normalized[
+        youIndex
+      ]
+    );
+
+
+    /*
+     * BELOW YOU
+     */
+
+    if (
+      youIndex + 1 <
+      normalized.length
+    ) {
+
+      displayRows.push(
+        normalized[
+          youIndex + 1
+        ]
+      );
+
+    }
+
+  }
+
+
+  /*
+   * RENDER
+   */
+
+  displayRows.forEach(
+    function(row) {
+
+
+      /*
+       * SEPARATOR
+       */
+
+      if (
+        row.separator
+      ) {
+
+        const separator =
+          document.createElement(
+            "div"
+          );
+
+
+        separator.className =
+          "leader-separator";
+
+
+        separator.textContent =
+          "···";
+
+
+        container.appendChild(
+          separator
+        );
+
+
+        return;
+
+      }
+
+
+      /*
+       * IS YOU
+       */
+
+      const isYou =
+        row.email
+          .trim()
+          .toLowerCase() ===
+        normalizedUser;
+
+
+      /*
+       * ROW
+       */
+
+      const rowElement =
+        document.createElement(
+          "div"
+        );
+
+
+      rowElement.className =
+        "leader-row" +
+        (
+          isYou
+            ? " you"
+            : ""
+        );
+
+
+      /*
+       * RANK
+       */
+
+      const rank =
+        document.createElement(
+          "div"
+        );
+
+
+      rank.className =
+        "leader-rank";
+
+
+      rank.textContent =
+        "#" +
+        row.rank;
+
+
+      /*
+       * USER
+       */
+
+      const user =
+        document.createElement(
+          "div"
+        );
+
+
+      user.className =
+        "leader-user";
+
+
+      /*
+       * AVATAR
+       */
+
+      const avatar =
+        document.createElement(
+          "div"
+        );
+
+
+      avatar.className =
+        "avatar";
+
+
+      avatar.textContent =
+        isYou
+          ? "🏎️"
+          : getParticipantEmoji(
+              row.participantIndex
+            );
+
+
+      /*
+       * PARTICIPANT
+       */
+
+      const participant =
+        document.createElement(
+          "div"
+        );
+
+
+      participant.className =
+        "participant";
+
+
+      participant.textContent =
+        isYou
+          ? "YOU"
+          : "Participant";
+
+
+      /*
+       * YOU BADGE
+       */
+
+      if (
+        isYou
+      ) {
+
+        const badge =
+          document.createElement(
+            "span"
+          );
+
+
+        badge.className =
+          "you-badge";
+
+
+        badge.textContent =
+          "YOU";
+
+
+        participant.appendChild(
+          badge
+        );
+
+      }
+
+
+      user.appendChild(
+        avatar
+      );
+
+
+      user.appendChild(
+        participant
+      );
+
+
+      /*
+       * POINTS
+       */
+
+      const points =
+        document.createElement(
+          "div"
+        );
+
+
+      points.className =
+        "points";
+
+
+      points.textContent =
+        Number(
+          row.points || 0
+        ).toLocaleString();
+
+
+      /*
+       * APPEND
+       */
+
+      rowElement.appendChild(
+        rank
+      );
+
+
+      rowElement.appendChild(
+        user
+      );
+
+
+      rowElement.appendChild(
+        points
+      );
+
+
+      container.appendChild(
+        rowElement
+      );
+
+    }
+  );
+
+}
+
+
+/*
+ * =================================================
+ * COUNTDOWN
+ * =================================================
+ */
+
+function updateCountdown() {
+
+  const now =
+    new Date();
+
+
+  const diff =
+    CONTEST_END.getTime() -
+    now.getTime();
+
+
+  const element =
+    document.getElementById(
+      "countdown"
+    );
+
+
+  if (
+    diff <= 0
+  ) {
+
+    element.textContent =
+      "Contest ended";
+
+    return;
+
+  }
+
+
+  const days =
+    Math.floor(
+      diff /
+      (
+        1000 *
+        60 *
+        60 *
+        24
+      )
+    );
+
+
+  const hours =
+    Math.floor(
+      (
+        diff /
+        (
+          1000 *
+          60 *
+          60
+        )
+      ) % 24
+    );
+
+
+  const minutes =
+    Math.floor(
+      (
+        diff /
+        (
+          1000 *
+          60
+        )
+      ) % 60
+    );
+
+
+  const seconds =
+    Math.floor(
+      (
+        diff /
+        1000
+      ) % 60
+    );
+
+
+  element.textContent =
+    days +
+    "d " +
+    hours +
+    "h " +
+    minutes +
+    "m " +
+    seconds +
+    "s";
+
+}
+
+
+/*
+ * =================================================
+ * START COUNTDOWN
+ * =================================================
+ */
+
+updateCountdown();
+
+
+setInterval(
+  updateCountdown,
+  1000
+);
+
+</script>
+
+</body>
+</html>
