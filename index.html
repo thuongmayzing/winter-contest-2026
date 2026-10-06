@@ -17,9 +17,9 @@
       --accent-color: #66D9D1;
       --bg-dark: #0f0c3f;
       
-      /* Christmas Gold Accents */
-      --gold-main: #f59e0b;
-      --gold-light: #fef3c7;
+      /* Soft Gold Accents (Đã làm nhạt màu vàng vòng tròn để tránh chói) */
+      --gold-main: #fcd34d;
+      --gold-light: #fffbeb;
       --gold-gradient: linear-gradient(135deg, #fef08a 0%, #f59e0b 100%);
       
       --card-bg: #ffffff;
@@ -147,23 +147,33 @@
     .contest-header h1 {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 900;
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
 
-    .contest-date {
-      margin-top: 6px;
+    .contest-subtitle {
+      font-family: 'Montserrat', sans-serif;
       font-size: 13px;
+      font-weight: 800;
       color: var(--accent-color);
+      letter-spacing: 2px;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .contest-date {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #a5b4fc;
       font-weight: 600;
       letter-spacing: 0.5px;
     }
 
     .level-badge {
       display: inline-block;
-      margin-top: 16px;
+      margin-top: 14px;
       background: var(--gold-gradient);
       color: #78350f;
       padding: 6px 20px;
@@ -172,7 +182,7 @@
       font-weight: 900;
       font-size: 14px;
       letter-spacing: 1px;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
       text-transform: uppercase;
     }
 
@@ -180,7 +190,7 @@
       padding: 30px 24px;
     }
 
-    /* CIRCULAR TARGET (NEXT REWARD) */
+    /* CIRCULAR TARGET (NEXT REWARD) - LÀM NHẠT MÀU VÀNG */
     .circle-target-wrapper {
       display: flex;
       justify-content: center;
@@ -191,552 +201,6 @@
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      border: 8px solid var(--gold-main);
+      border: 6px solid var(--gold-main);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.25), inset 0 0 15px rgba(245, 158, 11, 0.1);
-      position: relative;
-      background: #fffdf5;
-    }
-
-    .circle-target .label {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .circle-target .target-points {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--main-color);
-      margin: 4px 0 2px 0;
-    }
-
-    .circle-target .reward-amount {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 26px;
-      font-weight: 900;
-      color: #10b981;
-    }
-
-    /* 3 STAT METRICS BOXES */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .stat-box {
-      border: 1.5px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 14px 8px;
-      text-align: center;
-      background: #f8fafc;
-    }
-
-    .stat-box .stat-label {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .stat-box .stat-value {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--main-color);
-      margin-top: 4px;
-    }
-
-    /* PROGRESS BAR */
-    .progress-section {
-      margin-top: 10px;
-    }
-
-    .progress-bar-bg {
-      height: 22px;
-      background: #e2e8f0;
-      border-radius: 999px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--main-color);
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 12px;
-      color: white;
-      font-size: 11px;
-      font-weight: 800;
-      transition: width 0.8s ease;
-    }
-
-    .progress-info {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    /* RIGHT CARD: MINI LEADERBOARD (1/3) */
-    .leaderboard-card {
-      background: var(--card-bg);
-      border-radius: 28px;
-      padding: 20px 16px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .leaderboard-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      font-weight: 900;
-      color: var(--main-color);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .leaderboard-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    /* COMPACT LEADERBOARD ROW (ONLY EMOJI & POINTS) */
-    .mini-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 12px;
-      border-radius: 12px;
-      background: #f8fafc;
-      border: 1px solid #f1f5f9;
-    }
-
-    .mini-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .mini-rank {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      width: 22px;
-      color: var(--text-muted);
-    }
-
-    .mini-emoji {
-      font-size: 18px;
-    }
-
-    .mini-points {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 13px;
-      color: var(--main-color);
-    }
-
-    /* TOP 3 GOLD / SILVER / BRONZE ACCENTS */
-    .mini-row.rank-1 {
-      background: #fefce8;
-      border-color: #fde047;
-    }
-    .mini-row.rank-1 .mini-rank { color: #d97706; }
-
-    .mini-row.rank-2 {
-      background: #f8fafc;
-      border-color: #cbd5e1;
-    }
-
-    .mini-row.rank-3 {
-      background: #fff7ed;
-      border-color: #ffedd5;
-    }
-    .mini-row.rank-3 .mini-rank { color: #c2410c; }
-
-    /* "YOU" HIGHLIGHT ROW */
-    .mini-row.you {
-      background: #f0fdf4 !important;
-      border: 2px solid #10b981 !important;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
-    }
-    .mini-row.you .mini-points {
-      color: #047857;
-    }
-
-    .mini-separator {
-      text-align: center;
-      color: #94a3b8;
-      font-weight: 900;
-      font-size: 12px;
-      padding: 2px 0;
-    }
-
-    .footer-email {
-      text-align: center;
-      color: #94a3b8;
-      font-size: 12px;
-      margin-top: 20px;
-      font-weight: 500;
-    }
-
-    .loading {
-      text-align: center;
-      color: var(--text-muted);
-      padding: 20px;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    /* RESPONSIVE FOR MOBILE */
-    @media (max-width: 768px) {
-      .app-layout {
-        grid-template-columns: 1fr; /* Switch to vertical on mobile */
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<div class="container">
-
-  <!-- LOGIN SCREEN -->
-  <div id="login-screen">
-    <h2>WINTER CONTEST ❄️</h2>
-    <div class="login-subtitle">Enter your Passcode to view your rank</div>
-    
-    <input
-      id="user-id"
-      class="input"
-      type="text"
-      placeholder="e.g. WNT-8K39P2"
-      autocomplete="off"
-    >
-
-    <button class="btn" onclick="login()">VIEW MY PROGRESS</button>
-
-    <div id="login-error" class="error"></div>
-  </div>
-
-  <!-- DASHBOARD (2/3 & 1/3 LAYOUT) -->
-  <div id="dashboard">
-    <div class="app-layout">
-
-      <!-- LEFT: PERSONAL DASHBOARD (2/3) -->
-      <div class="personal-card">
-        
-        <div class="contest-header">
-          <h1>WINTER CONTEST</h1>
-          <div class="contest-date">30 Sep to 31 Dec (23:59 GMT)</div>
-          <div id="badge-level" class="level-badge">LEVEL 0</div>
-        </div>
-
-        <div class="personal-body">
-          <div id="personal-loading" class="loading">Loading performance...</div>
-
-          <div id="personal-content" style="display:none;">
-            
-            <!-- CIRCULAR REWARD TARGET -->
-            <div class="circle-target-wrapper">
-              <div class="circle-target">
-                <div class="label">NEXT REWARD</div>
-                <div id="target-points" class="target-points">1,000 Points</div>
-                <div id="target-reward" class="reward-amount">$200</div>
-              </div>
-            </div>
-
-            <!-- 3 METRICS -->
-            <div class="stats-row">
-              <div class="stat-box">
-                <div class="stat-label">UNITS</div>
-                <div id="stat-units" class="stat-value">0</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-label">POINTS</div>
-                <div id="stat-points" class="stat-value">0</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-label">RANK</div>
-                <div id="stat-rank" class="stat-value">#-</div>
-              </div>
-            </div>
-
-            <!-- PROGRESS BAR -->
-            <div class="progress-section">
-              <div class="progress-bar-bg">
-                <div id="progress-fill" class="progress-bar-fill" style="width: 0%;">0%</div>
-              </div>
-              <div class="progress-info">
-                <span id="progress-text">0 / 1,000 points</span>
-                <span>Active</span>
-              </div>
-            </div>
-
-            <div id="user-email-display" class="footer-email"></div>
-
-          </div>
-        </div>
-
-      </div>
-
-      <!-- RIGHT: MINI LEADERBOARD (1/3) -->
-      <div class="leaderboard-card">
-        <div class="leaderboard-title">
-          🏆 LEADERBOARD
-        </div>
-
-        <div id="leaderboard-list" class="leaderboard-list">
-          <div class="loading">Loading...</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-<script>
-const API_URL = "https://script.google.com/macros/s/AKfycbx_qxUJv2jRQZ8SA9u8tYACaA-gtnTlK7TAG0y1SDLxWGwnpngatP3ajcYpo2bg9Jz_vg/exec";
-
-const LEVELS = [
-  { points: 0, reward: 0 },
-  { points: 250, reward: 50 },
-  { points: 500, reward: 100 },
-  { points: 1000, reward: 200 },
-  { points: 2500, reward: 500 },
-  { points: 5000, reward: 1200 },
-  { points: 10000, reward: 2500 },
-  { points: 25000, reward: 7000 },
-  { points: 50000, reward: 15000 },
-  { points: 100000, reward: 35000 }
-];
-
-function getLevel(points) {
-  let current = LEVELS[0];
-  for (const level of LEVELS) {
-    if (points >= level.points) current = level;
-  }
-  return current;
-}
-
-function getNextLevel(points) {
-  for (const level of LEVELS) {
-    if (points < level.points) return level;
-  }
-  return null;
-}
-
-const EMOJIS = ["🚀", "⚡", "🔥", "💎", "🌟", "🎯", "👑", "🏆", "🏎️", "🦁", "🦊", "🐻", "🦄", "🦅"];
-function getEmoji(index) {
-  return EMOJIS[index % EMOJIS.length];
-}
-
-let currentUserId = "";
-
-function login() {
-  const input = document.getElementById("user-id");
-  const userId = input.value.trim();
-  const error = document.getElementById("login-error");
-
-  error.textContent = "";
-
-  if (!userId) {
-    error.textContent = "Please enter your Passcode.";
-    return;
-  }
-
-  currentUserId = userId;
-  document.getElementById("login-screen").style.display = "none";
-  document.getElementById("dashboard").style.display = "block";
-
-  loadPersonalScore(userId);
-  loadLeaderboard(userId);
-}
-
-document.getElementById("user-id").addEventListener("keydown", function(e) {
-  if (e.key === "Enter") login();
-});
-
-async function loadPersonalScore(userId) {
-  const loading = document.getElementById("personal-loading");
-  const content = document.getElementById("personal-content");
-
-  try {
-    const url = API_URL + "?id=" + encodeURIComponent(userId);
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("API Error");
-
-    const data = await response.json();
-    if (!data || data.error) throw new Error(data?.error || "User not found");
-
-    renderPersonalScore(data, userId);
-    loading.style.display = "none";
-    content.style.display = "block";
-  } catch (err) {
-    console.error(err);
-    loading.textContent = "Unable to load data. Please check your Passcode.";
-  }
-}
-
-function renderPersonalScore(data, userId) {
-  const points = Number(data.points ?? data.score ?? 0);
-  const units = Number(data.units ?? Math.floor(points * 0.55)); // Mock if units not in API
-  const rank = Number(data.rank || 0);
-
-  const level = getLevel(points);
-  const next = getNextLevel(points);
-
-  document.getElementById("badge-level").textContent = "LEVEL " + LEVELS.indexOf(level);
-  document.getElementById("stat-units").textContent = units.toLocaleString();
-  document.getElementById("stat-points").textContent = points.toLocaleString();
-  document.getElementById("stat-rank").textContent = "#" + rank;
-  document.getElementById("user-email-display").textContent = "Account: " + (data.email || userId);
-
-  if (next) {
-    document.getElementById("target-points").textContent = next.points.toLocaleString() + " Points";
-    document.getElementById("target-reward").textContent = "$" + next.reward.toLocaleString();
-
-    const pct = Math.max(0, Math.min(100, Math.round((points / next.points) * 100)));
-    document.getElementById("progress-fill").style.width = pct + "%";
-    document.getElementById("progress-fill").textContent = pct + "%";
-    document.getElementById("progress-text").textContent = `${points.toLocaleString()} / ${next.points.toLocaleString()} points`;
-  } else {
-    document.getElementById("target-points").textContent = "MAX LEVEL";
-    document.getElementById("target-reward").textContent = "🎉";
-    document.getElementById("progress-fill").style.width = "100%";
-    document.getElementById("progress-fill").textContent = "100%";
-    document.getElementById("progress-text").textContent = `${points.toLocaleString()} points`;
-  }
-}
-
-function loadLeaderboard(userId) {
-  const callbackName = "leaderboardCallback_" + Date.now();
-
-  window[callbackName] = function(data) {
-    try {
-      if (!data || data.error) throw new Error(data?.error || "Leaderboard Error");
-      renderLeaderboard(data.leaderboard || [], userId);
-    } catch (err) {
-      console.error(err);
-      document.getElementById("leaderboard-list").innerHTML = '<div class="loading">Failed to load.</div>';
-    } finally {
-      delete window[callbackName];
-    }
-  };
-
-  const script = document.createElement("script");
-  script.src = API_URL + "?mode=leaderboard&callback=" + callbackName;
-  script.onerror = function() {
-    document.getElementById("leaderboard-list").innerHTML = '<div class="loading">Failed to load.</div>';
-    delete window[callbackName];
-  };
-
-  document.body.appendChild(script);
-}
-
-function renderLeaderboard(rows, userId) {
-  const container = document.getElementById("leaderboard-list");
-  container.innerHTML = "";
-
-  if (!Array.isArray(rows) || rows.length === 0) {
-    container.innerHTML = '<div class="loading">No data</div>';
-    return;
-  }
-
-  const normalized = rows.map((row, index) => ({
-    rank: Number(row.rank ?? index + 1),
-    email: String(row.email ?? row.userId ?? row.id ?? "").trim(),
-    points: Number(row.points ?? row.score ?? 0),
-    emojiIndex: index
-  }));
-
-  normalized.sort((a, b) => a.rank - b.rank);
-
-  const normalizedUser = String(userId || "").trim().toLowerCase();
-  let youIndex = normalized.findIndex(row => row.email.toLowerCase() === normalizedUser || row.email.toLowerCase().includes(normalizedUser));
-
-  const topCount = 5;
-  let displayRows = [];
-
-  if (youIndex === -1 || youIndex < topCount) {
-    displayRows = normalized.slice(0, topCount);
-  } else {
-    displayRows = normalized.slice(0, topCount);
-    displayRows.push({ separator: true });
-    if (youIndex - 1 >= topCount) displayRows.push(normalized[youIndex - 1]);
-    displayRows.push(normalized[youIndex]);
-    if (youIndex + 1 < normalized.length) displayRows.push(normalized[youIndex + 1]);
-  }
-
-  displayRows.forEach(row => {
-    if (row.separator) {
-      const sep = document.createElement("div");
-      sep.className = "mini-separator";
-      sep.textContent = "• • •";
-      container.appendChild(sep);
-      return;
-    }
-
-    const isYou = row.email.toLowerCase() === normalizedUser || row.email.toLowerCase().includes(normalizedUser);
-    
-    let rankClass = "";
-    if (row.rank === 1) rankClass = " rank-1";
-    else if (row.rank === 2) rankClass = " rank-2";
-    else if (row.rank === 3) rankClass = " rank-3";
-
-    const rowEl = document.createElement("div");
-    rowEl.className = "mini-row" + rankClass + (isYou ? " you" : "");
-
-    const left = document.createElement("div");
-    left.className = "mini-left";
-
-    const rank = document.createElement("div");
-    rank.className = "mini-rank";
-    if (row.rank === 1) rank.textContent = "🥇";
-    else if (row.rank === 2) rank.textContent = "🥈";
-    else if (row.rank === 3) rank.textContent = "🥉";
-    else rank.textContent = "#" + row.rank;
-
-    const emoji = document.createElement("div");
-    emoji.className = "mini-emoji";
-    emoji.textContent = isYou ? "🏎️️" : getEmoji(row.emojiIndex);
-
-    left.appendChild(rank);
-    left.appendChild(emoji);
-
-    const points = document.createElement("div");
-    points.className = "mini-points";
-    points.textContent = row.points.toLocaleString() + " pts";
-
-    rowEl.appendChild(left);
-    rowEl.appendChild(points);
-
-    container.appendChild(rowEl);
-  });
-}
-</script>
-
-</body>
-</html>
