@@ -1,640 +1,1248 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Winter Contest 2026 - Mayzing</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Winter Contest 2026</title>
+
 
   <!-- Google Fonts -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
 
   <style>
-    :root {
-      /* Brand Palette */
-      --main-color: #191265;
-      --contrast-color: #6B5BFF;
-      --accent-color: #66D9D1;
-      --bg-dark: #0f0c3f;
 
-      /* Christmas Gold Accents */
-      --gold-main: #f59e0b;
-      --gold-light: #fef3c7;
-      --gold-gradient: linear-gradient(135deg, #fef08a 0%, #f59e0b 100%);
-
-      --card-bg: #ffffff;
-      --text-dark: #191265;
-      --text-muted: #64748b;
-    }
+    /* =================================================
+       RESET
+       ================================================= */
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
+
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
 
     body {
-      margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg-dark);
-      background-image: radial-gradient(
-        circle at top center,
-        #191265 0%,
-        #0f0c3f 100%
-      );
+
+      font-family: "Inter", sans-serif;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f7fbff 0%,
+          #eef7ff 50%,
+          #ffffff 100%
+        );
+
+      color: #17324d;
+
       min-height: 100vh;
-      color: var(--text-dark);
-      padding: 30px 15px;
     }
 
-    .container {
-      max-width: 1050px;
-      margin: 0 auto;
+
+    button,
+    input {
+      font-family: inherit;
     }
 
-    /* =========================================================
-       LOGIN SCREEN
-    ========================================================= */
 
-    #login-screen {
-      max-width: 400px;
-      margin: 80px auto;
-      background: var(--card-bg);
-      padding: 40px 30px;
+    /* =================================================
+       APP
+       ================================================= */
+
+    .app {
+      min-height: 100vh;
+      width: 100%;
+    }
+
+
+    /* =================================================
+       LOGIN
+       ================================================= */
+
+    .login-screen {
+
+      min-height: 100vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 24px;
+    }
+
+
+    .login-card {
+
+      width: 100%;
+
+      max-width: 430px;
+
+      background: #ffffff;
+
       border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+      padding: 36px 30px;
+
+      box-shadow:
+        0 20px 60px rgba(27, 80, 120, 0.12);
+
+      border: 1px solid #e7f0f7;
+
       text-align: center;
     }
 
-    #login-screen h2 {
-      margin: 0 0 10px 0;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--main-color);
-      font-size: 24px;
-      font-weight: 800;
+
+    .login-icon {
+
+      width: 76px;
+
+      height: 76px;
+
+      margin: 0 auto 20px;
+
+      border-radius: 22px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #eaf7ff;
+
+      font-size: 38px;
     }
+
+
+    .login-title {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 28px;
+
+      font-weight: 800;
+
+      color: #123c5a;
+
+      margin-bottom: 8px;
+    }
+
 
     .login-subtitle {
-      color: var(--text-muted);
+
+      color: #7890a2;
+
+      font-size: 14px;
+
+      line-height: 1.6;
+
+      margin-bottom: 26px;
+    }
+
+
+    .input-label {
+
+      display: block;
+
+      text-align: left;
+
+      margin-bottom: 8px;
+
       font-size: 13px;
-      margin-bottom: 24px;
+
+      font-weight: 700;
+
+      color: #47667e;
     }
 
-    .input {
+
+    .login-input {
+
       width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #e2e8f0;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 600;
+
+      height: 52px;
+
+      border-radius: 14px;
+
+      border: 1px solid #d8e7f1;
+
+      background: #fafdff;
+
+      padding: 0 16px;
+
       outline: none;
-      transition: all 0.2s;
+
+      color: #17324d;
+
+      font-size: 14px;
+
+      transition: 0.2s ease;
+
+      margin-bottom: 14px;
     }
 
-    .input:focus {
-      border-color: var(--contrast-color);
-      box-shadow: 0 0 0 4px rgba(107, 91, 255, 0.15);
+
+    .login-input:focus {
+
+      border-color: #51a9df;
+
+      box-shadow:
+        0 0 0 4px rgba(81, 169, 223, 0.12);
     }
 
-    .btn {
+
+    .login-button {
+
       width: 100%;
-      margin-top: 16px;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: var(--contrast-color);
-      color: white;
+
+      height: 52px;
+
+      border: 0;
+
+      border-radius: 14px;
+
+      background: #238bc4;
+
+      color: #ffffff;
+
       font-size: 15px;
-      font-family: 'Montserrat', sans-serif;
+
       font-weight: 800;
+
       cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 14px rgba(107, 91, 255, 0.4);
+
+      transition: 0.2s ease;
     }
 
-    .btn:hover {
-      background: #5a4ce5;
+
+    .login-button:hover {
+
+      background: #1877aa;
+
       transform: translateY(-1px);
     }
 
-    .error {
-      color: #ef4444;
-      margin-top: 12px;
+
+    .login-button:disabled {
+
+      opacity: 0.65;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+
+    .login-error {
+
+      min-height: 20px;
+
+      margin-top: 14px;
+
       font-size: 13px;
+
+      color: #d9534f;
+
       font-weight: 600;
     }
 
-    /* =========================================================
-       MAIN APP
-    ========================================================= */
 
-    #dashboard {
+    /* =================================================
+       DASHBOARD
+       ================================================= */
+
+    .dashboard {
+
       display: none;
+
+      min-height: 100vh;
+
+      padding: 30px;
     }
 
-    .app-layout {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
+
+    .dashboard-container {
+
+      max-width: 1180px;
+
+      margin: 0 auto;
+    }
+
+
+    /* =================================================
+       HEADER
+       ================================================= */
+
+    .top-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
       gap: 20px;
+
+      margin-bottom: 26px;
+    }
+
+
+    .brand {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+    }
+
+
+    .brand-icon {
+
+      width: 54px;
+
+      height: 54px;
+
+      border-radius: 16px;
+
+      background: #e8f6ff;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 28px;
+    }
+
+
+    .brand-title {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 24px;
+
+      font-weight: 800;
+
+      color: #123c5a;
+    }
+
+
+    .brand-subtitle {
+
+      font-size: 12px;
+
+      color: #8297a8;
+
+      margin-top: 3px;
+    }
+
+
+    .logout-button {
+
+      border: 1px solid #dce9f1;
+
+      background: #ffffff;
+
+      color: #607b8e;
+
+      padding: 10px 16px;
+
+      border-radius: 12px;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+
+    .logout-button:hover {
+
+      background: #f4f9fc;
+    }
+
+
+    /* =================================================
+       GRID
+       ================================================= */
+
+    .dashboard-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(360px, 0.9fr);
+
+      gap: 22px;
+
       align-items: start;
     }
 
-    /* =========================================================
-       PERSONAL CARD
-    ========================================================= */
 
-    .personal-card {
-      background: var(--card-bg);
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    /* =================================================
+       CARDS
+       ================================================= */
+
+    .card {
+
+      background: #ffffff;
+
+      border-radius: 22px;
+
+      border: 1px solid #e5eef5;
+
+      box-shadow:
+        0 12px 35px rgba(27, 80, 120, 0.07);
     }
 
-    /* HEADER */
 
-    .contest-header {
-      background: var(--main-color);
-      padding: 30px 20px 24px 20px;
-      text-align: center;
-      color: white;
-      position: relative;
+    /* =================================================
+       PERSONAL SCORE
+       ================================================= */
+
+    .score-card {
+
+      padding: 28px;
     }
 
-    .contest-header h1 {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 30px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
+
+    .section-label {
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.08em;
+
       text-transform: uppercase;
+
+      color: #7d96a8;
+
+      margin-bottom: 10px;
     }
 
-    .contest-date {
-      margin-top: 6px;
-      font-size: 13px;
-      color: var(--accent-color);
-      font-weight: 600;
-      letter-spacing: 0.5px;
+
+    .score-title {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 25px;
+
+      font-weight: 800;
+
+      color: #173f5f;
+
+      margin-bottom: 5px;
     }
+
+
+    .score-email {
+
+      font-size: 13px;
+
+      color: #8aa0b0;
+
+      margin-bottom: 28px;
+
+      word-break: break-word;
+    }
+
+
+    .score-main {
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+      gap: 14px;
+
+      margin-bottom: 16px;
+    }
+
+
+    .score-box {
+
+      padding: 20px;
+
+      border-radius: 18px;
+
+      background: #f7fbfe;
+
+      border: 1px solid #e7f1f7;
+    }
+
+
+    .score-box-label {
+
+      font-size: 12px;
+
+      color: #849aaa;
+
+      font-weight: 600;
+
+      margin-bottom: 8px;
+    }
+
+
+    .score-number {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 32px;
+
+      font-weight: 800;
+
+      color: #1e80b7;
+    }
+
+
+    .score-unit {
+
+      font-size: 12px;
+
+      color: #7891a2;
+
+      margin-left: 3px;
+    }
+
+
+    .rank-box {
+
+      margin-top: 4px;
+
+      padding: 22px;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #eaf7ff,
+          #f6fbff
+        );
+
+      border: 1px solid #dceff9;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+
+    .rank-left-label {
+
+      font-size: 12px;
+
+      color: #7790a1;
+
+      font-weight: 700;
+
+      margin-bottom: 5px;
+    }
+
+
+    .rank-value {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 36px;
+
+      font-weight: 800;
+
+      color: #147db6;
+    }
+
 
     .level-badge {
-      display: inline-block;
-      margin-top: 16px;
-      background: var(--gold-gradient);
-      color: #78350f;
-      padding: 6px 20px;
-      border-radius: 999px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 14px;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
-      text-transform: uppercase;
-    }
 
-    .personal-body {
-      padding: 30px 24px;
-    }
+      padding: 10px 15px;
 
-    /* =========================================================
-       CIRCULAR TARGET
-    ========================================================= */
-
-    .circle-target-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 28px;
-    }
-
-    .circle-target {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: 8px solid var(--gold-main);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow:
-        0 0 25px rgba(245, 158, 11, 0.25),
-        inset 0 0 15px rgba(245, 158, 11, 0.1);
-      position: relative;
-      background: #fffdf5;
-    }
-
-    .circle-target .label {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .circle-target .target-points {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--main-color);
-      margin: 4px 0 2px 0;
-    }
-
-    .circle-target .reward-amount {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 26px;
-      font-weight: 900;
-      color: #10b981;
-    }
-
-    /* =========================================================
-       STAT BOXES
-    ========================================================= */
-
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .stat-box {
-      border: 1.5px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 14px 8px;
-      text-align: center;
-      background: #f8fafc;
-    }
-
-    .stat-box .stat-label {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .stat-box .stat-value {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--main-color);
-      margin-top: 4px;
-    }
-
-    /* =========================================================
-       PROGRESS BAR
-    ========================================================= */
-
-    .progress-section {
-      margin-top: 10px;
-    }
-
-    .progress-bar-bg {
-      height: 22px;
-      background: #e2e8f0;
-      border-radius: 999px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--main-color);
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 12px;
-      color: white;
-      font-size: 11px;
-      font-weight: 800;
-      transition: width 0.8s ease;
-    }
-
-    .progress-info {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    /* =========================================================
-       LEADERBOARD CARD
-    ========================================================= */
-
-    .leaderboard-card {
-      background: var(--card-bg);
-      border-radius: 28px;
-      padding: 20px 16px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .leaderboard-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      font-weight: 900;
-      color: var(--main-color);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .leaderboard-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    /* =========================================================
-       LEADERBOARD ROW
-    ========================================================= */
-
-    .mini-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 12px;
       border-radius: 12px;
-      background: #f8fafc;
-      border: 1px solid #f1f5f9;
-    }
 
-    .mini-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
+      background: #ffffff;
 
-    .mini-rank {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
+      border: 1px solid #d9ebf5;
+
+      color: #29779e;
+
       font-size: 13px;
-      width: 22px;
-      min-width: 22px;
-      color: var(--text-muted);
-    }
 
-    .mini-emoji {
-      font-size: 18px;
-      width: 38px;
-      min-width: 38px;
-      text-align: center;
-      line-height: 1;
-    }
-
-    /* YOU label */
-
-    .mini-emoji.you-label {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 900;
-      color: #047857;
-      width: 38px;
-      min-width: 38px;
-      text-align: center;
-    }
-
-    .mini-points {
-      font-family: 'Montserrat', sans-serif;
       font-weight: 800;
-      font-size: 13px;
-      color: var(--main-color);
+
       white-space: nowrap;
     }
 
-    /* =========================================================
-       TOP 3
-    ========================================================= */
 
-    .mini-row.rank-1 {
-      background: #fefce8;
-      border-color: #fde047;
+    /* =================================================
+       PROGRESS
+       ================================================= */
+
+    .progress-section {
+
+      margin-top: 22px;
     }
 
-    .mini-row.rank-1 .mini-rank {
-      color: #d97706;
+
+    .progress-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-bottom: 8px;
     }
 
-    .mini-row.rank-2 {
-      background: #f8fafc;
-      border-color: #cbd5e1;
-    }
 
-    .mini-row.rank-3 {
-      background: #fff7ed;
-      border-color: #ffedd5;
-    }
+    .progress-title {
 
-    .mini-row.rank-3 .mini-rank {
-      color: #c2410c;
-    }
-
-    /* =========================================================
-       YOU ROW
-    ========================================================= */
-
-    .mini-row.you {
-      background: #f0fdf4 !important;
-      border: 2px solid #10b981 !important;
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
-    }
-
-    .mini-row.you .mini-points {
-      color: #047857;
-    }
-
-    /* =========================================================
-       SEPARATOR
-    ========================================================= */
-
-    .mini-separator {
-      text-align: center;
-      color: #94a3b8;
-      font-weight: 900;
       font-size: 12px;
-      padding: 2px 0;
-      letter-spacing: 2px;
+
+      color: #71899b;
+
+      font-weight: 700;
     }
 
-    /* =========================================================
-       FOOTER
-    ========================================================= */
 
-    .footer-email {
-      text-align: center;
-      color: #94a3b8;
+    .progress-points {
+
       font-size: 12px;
-      margin-top: 20px;
-      font-weight: 500;
+
+      color: #8097a8;
+
+      font-weight: 700;
     }
 
-    .loading {
-      text-align: center;
-      color: var(--text-muted);
-      padding: 20px;
+
+    .progress-track {
+
+      width: 100%;
+
+      height: 9px;
+
+      border-radius: 99px;
+
+      background: #eaf2f7;
+
+      overflow: hidden;
+    }
+
+
+    .progress-fill {
+
+      height: 100%;
+
+      width: 0%;
+
+      border-radius: 99px;
+
+      background: #3da0d2;
+
+      transition: width 0.6s ease;
+    }
+
+
+    .next-level {
+
+      margin-top: 9px;
+
+      font-size: 12px;
+
+      color: #8aa0ae;
+    }
+
+
+    /* =================================================
+       LEADERBOARD CARD
+       ================================================= */
+
+    .leaderboard-card {
+
+      padding: 24px;
+    }
+
+
+    .leaderboard-header {
+
+      display: flex;
+
+      align-items: flex-start;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
+      margin-bottom: 18px;
+    }
+
+
+    .leaderboard-title {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 21px;
+
+      font-weight: 800;
+
+      color: #173f5f;
+    }
+
+
+    .leaderboard-subtitle {
+
+      font-size: 12px;
+
+      color: #8aa0ae;
+
+      margin-top: 4px;
+    }
+
+
+    .refresh-button {
+
+      width: 38px;
+
+      height: 38px;
+
+      border-radius: 11px;
+
+      border: 1px solid #dfebf2;
+
+      background: #ffffff;
+
+      color: #4784a4;
+
+      cursor: pointer;
+
+      font-size: 16px;
+    }
+
+
+    .refresh-button:hover {
+
+      background: #f5fafd;
+    }
+
+
+    /* =================================================
+       LEADERBOARD LIST
+       ================================================= */
+
+    .leaderboard-list {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 7px;
+    }
+
+
+    .leaderboard-row {
+
+      display: grid;
+
+      grid-template-columns:
+        40px
+        38px
+        minmax(0, 1fr)
+        auto;
+
+      align-items: center;
+
+      gap: 10px;
+
+      min-height: 57px;
+
+      padding: 8px 12px;
+
+      border-radius: 15px;
+
+      background: #f9fcfe;
+
+      border: 1px solid transparent;
+
+      transition: 0.15s ease;
+    }
+
+
+    .leaderboard-row:hover {
+
+      border-color: #dcecf5;
+
+      background: #f5fafd;
+    }
+
+
+    .leaderboard-row.you {
+
+      background:
+        linear-gradient(
+          135deg,
+          #e9f7ff,
+          #f5fbff
+        );
+
+      border-color: #a9daf2;
+
+      box-shadow:
+        0 5px 18px rgba(49, 148, 200, 0.10);
+    }
+
+
+    .leaderboard-rank {
+
+      font-family: "Montserrat", sans-serif;
+
       font-size: 13px;
+
+      font-weight: 800;
+
+      color: #7790a1;
+
+      text-align: center;
+    }
+
+
+    .leaderboard-row.you .leaderboard-rank {
+
+      color: #167eb5;
+    }
+
+
+    .mini-emoji {
+
+      width: 32px;
+
+      height: 32px;
+
+      border-radius: 10px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #ffffff;
+
+      border: 1px solid #e5eef4;
+
+      font-size: 17px;
+
+      flex-shrink: 0;
+    }
+
+
+    .mini-emoji.you-label {
+
+      width: auto;
+
+      min-width: 32px;
+
+      padding: 0 7px;
+
+      background: #238bc4;
+
+      color: #ffffff;
+
+      border-color: #238bc4;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 0.03em;
+    }
+
+
+    .leaderboard-user {
+
+      min-width: 0;
+    }
+
+
+    .leaderboard-email {
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: #385a70;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+
+    .leaderboard-row.you .leaderboard-email {
+
+      color: #126e9e;
+    }
+
+
+    .leaderboard-points {
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      color: #6c8596;
+
+      white-space: nowrap;
+    }
+
+
+    .leaderboard-row.you .leaderboard-points {
+
+      color: #167db3;
+    }
+
+
+    .leaderboard-separator {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      margin: 6px 5px;
+
+      color: #b3c2cc;
+
+      font-size: 10px;
+
+      font-weight: 700;
+    }
+
+
+    .leaderboard-separator::before,
+    .leaderboard-separator::after {
+
+      content: "";
+
+      height: 1px;
+
+      flex: 1;
+
+      background: #e3edf3;
+    }
+
+
+    .leaderboard-loading {
+
+      padding: 35px 10px;
+
+      text-align: center;
+
+      color: #8aa0ae;
+
+      font-size: 13px;
+    }
+
+
+    .leaderboard-error {
+
+      padding: 25px 10px;
+
+      text-align: center;
+
+      color: #c86c67;
+
+      font-size: 13px;
+
       font-weight: 600;
     }
 
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
 
-    @media (max-width: 768px) {
-      .app-layout {
+    /* =================================================
+       FOOTER
+       ================================================= */
+
+    .footer {
+
+      text-align: center;
+
+      margin-top: 25px;
+
+      color: #a0b0bb;
+
+      font-size: 11px;
+    }
+
+
+    /* =================================================
+       RESPONSIVE
+       ================================================= */
+
+    @media (max-width: 850px) {
+
+      .dashboard {
+
+        padding: 20px;
+      }
+
+
+      .dashboard-grid {
+
         grid-template-columns: 1fr;
       }
 
-      .contest-header h1 {
-        font-size: 26px;
-      }
-
-      .personal-body {
-        padding: 24px 18px;
-      }
-
-      .leaderboard-card {
-        padding: 18px 14px;
-      }
     }
+
+
+    @media (max-width: 600px) {
+
+      .dashboard {
+
+        padding: 14px;
+      }
+
+
+      .top-header {
+
+        align-items: flex-start;
+      }
+
+
+      .brand-title {
+
+        font-size: 19px;
+      }
+
+
+      .brand-icon {
+
+        width: 46px;
+
+        height: 46px;
+
+        font-size: 23px;
+      }
+
+
+      .logout-button {
+
+        padding: 8px 11px;
+
+        font-size: 11px;
+      }
+
+
+      .score-card,
+      .leaderboard-card {
+
+        padding: 19px;
+      }
+
+
+      .score-main {
+
+        grid-template-columns: 1fr;
+      }
+
+
+      .leaderboard-row {
+
+        grid-template-columns:
+          34px
+          34px
+          minmax(0, 1fr)
+          auto;
+
+        gap: 7px;
+
+        padding: 8px;
+      }
+
+
+      .leaderboard-email {
+
+        font-size: 11px;
+      }
+
+
+      .leaderboard-points {
+
+        font-size: 11px;
+      }
+
+    }
+
 
     @media (max-width: 420px) {
-      body {
-        padding: 15px 10px;
+
+      .rank-box {
+
+        align-items: flex-start;
+
+        flex-direction: column;
       }
 
-      #login-screen {
-        margin: 40px auto;
-        padding: 30px 20px;
+
+      .leaderboard-row {
+
+        grid-template-columns:
+          30px
+          30px
+          minmax(0, 1fr)
+          auto;
       }
 
-      .stats-row {
-        gap: 8px;
-      }
-
-      .stat-box {
-        padding: 12px 5px;
-      }
-
-      .stat-box .stat-value {
-        font-size: 18px;
-      }
-
-      .mini-row {
-        padding: 8px 9px;
-      }
-
-      .mini-points {
-        font-size: 12px;
-      }
     }
+
   </style>
 
 </head>
 
+
 <body>
 
-<div class="container">
+<div class="app">
 
-  <!-- =======================================================
+
+  <!-- =================================================
        LOGIN SCREEN
-  ======================================================== -->
+       ================================================= -->
 
-  <div id="login-screen">
+  <section
+    id="loginScreen"
+    class="login-screen"
+  >
 
-```
-<h2>WINTER CONTEST ❄️</h2>
+    <div class="login-card">
 
-<div class="login-subtitle">
-  Enter your Passcode to view your rank
-</div>
-
-<input
-  id="user-id"
-  class="input"
-  type="text"
-  placeholder="e.g. WNT-8K39P2"
-  autocomplete="off"
->
-
-<button class="btn" onclick="login()">
-  VIEW MY PROGRESS
-</button>
-
-<div id="login-error" class="error"></div>
-```
-
-  </div>
-
-  <!-- =======================================================
-       DASHBOARD
-  ======================================================== -->
-
-  <div id="dashboard">
-
-```
-<div class="app-layout">
-
-  <!-- ===================================================
-       LEFT: PERSONAL DASHBOARD
-  ==================================================== -->
-
-  <div class="personal-card">
-
-    <!-- HEADER -->
-
-    <div class="contest-header">
-
-      <h1>WINTER CONTEST</h1>
-
-      <div class="contest-date">
-        30 Sep to 31 Dec (23:59 GMT)
+      <div class="login-icon">
+        ❄️
       </div>
 
-      <div id="badge-level" class="level-badge">
-        LEVEL 0
-      </div>
+
+      <h1 class="login-title">
+        Winter Contest 2026
+      </h1>
+
+
+      <p class="login-subtitle">
+        Enter your User ID to view your
+        contest score and leaderboard rank.
+      </p>
+
+
+      <label
+        class="input-label"
+        for="userIdInput"
+      >
+        User ID
+      </label>
+
+
+      <input
+        id="userIdInput"
+        class="login-input"
+        type="text"
+        placeholder="auth0|xxxxxxxxxxxxxxxx"
+        autocomplete="off"
+        spellcheck="false"
+      >
+
+
+      <button
+        id="loginButton"
+        class="login-button"
+        type="button"
+        onclick="login()"
+      >
+        View My Score
+      </button>
+
+
+      <div
+        id="loginError"
+        class="login-error"
+      ></div>
 
     </div>
 
-
-    <!-- PERSONAL BODY -->
-
-    <div class="personal-body">
-
-      <div id="personal-loading" class="loading">
-        Loading performance...
-      </div>
+  </section>
 
 
-      <div id="personal-content" style="display:none;">
+  <!-- =================================================
+       DASHBOARD
+       ================================================= -->
 
-        <!-- ============================================
-             NEXT REWARD
-        ============================================= -->
+  <section
+    id="dashboard"
+    class="dashboard"
+  >
 
-        <div class="circle-target-wrapper">
+    <div class="dashboard-container">
 
-          <div class="circle-target">
 
-            <div class="label">
-              NEXT REWARD
+      <!-- HEADER -->
+
+      <header class="top-header">
+
+        <div class="brand">
+
+          <div class="brand-icon">
+            ❄️
+          </div>
+
+
+          <div>
+
+            <div class="brand-title">
+              Winter Contest 2026
             </div>
 
-            <div id="target-points" class="target-points">
-              1,000 Points
-            </div>
-
-            <div id="target-reward" class="reward-amount">
-              $200
+            <div class="brand-subtitle">
+              Contest Leaderboard
             </div>
 
           </div>
@@ -642,943 +1250,1777 @@
         </div>
 
 
-        <!-- ============================================
-             STATISTICS
-        ============================================= -->
+        <button
+          class="logout-button"
+          type="button"
+          onclick="logout()"
+        >
+          Logout
+        </button>
 
-        <div class="stats-row">
+      </header>
 
-          <div class="stat-box">
 
-            <div class="stat-label">
-              UNITS
+      <!-- MAIN GRID -->
+
+      <main class="dashboard-grid">
+
+
+        <!-- =========================================
+             PERSONAL SCORE
+             ========================================= -->
+
+        <section class="card score-card">
+
+          <div class="section-label">
+            My Performance
+          </div>
+
+
+          <h2
+            id="scoreTitle"
+            class="score-title"
+          >
+            Your Score
+          </h2>
+
+
+          <div
+            id="scoreEmail"
+            class="score-email"
+          >
+            Loading...
+          </div>
+
+
+          <div class="score-main">
+
+
+            <!-- POINTS -->
+
+            <div class="score-box">
+
+              <div class="score-box-label">
+                Total Points
+              </div>
+
+
+              <div>
+
+                <span
+                  id="pointsValue"
+                  class="score-number"
+                >
+                  —
+                </span>
+
+                <span class="score-unit">
+                  pts
+                </span>
+
+              </div>
+
             </div>
 
-            <div id="stat-units" class="stat-value">
-              0
+
+            <!-- UNITS -->
+
+            <div class="score-box">
+
+              <div class="score-box-label">
+                Units
+              </div>
+
+
+              <div>
+
+                <span
+                  id="unitsValue"
+                  class="score-number"
+                >
+                  —
+                </span>
+
+              </div>
+
             </div>
 
           </div>
 
 
-          <div class="stat-box">
+          <!-- RANK -->
 
-            <div class="stat-label">
-              POINTS
+          <div class="rank-box">
+
+            <div>
+
+              <div class="rank-left-label">
+                Current Rank
+              </div>
+
+
+              <div
+                id="rankValue"
+                class="rank-value"
+              >
+                —
+              </div>
+
             </div>
 
-            <div id="stat-points" class="stat-value">
-              0
-            </div>
-
-          </div>
-
-
-          <div class="stat-box">
-
-            <div class="stat-label">
-              RANK
-            </div>
-
-            <div id="stat-rank" class="stat-value">
-              #-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- ============================================
-             PROGRESS
-        ============================================= -->
-
-        <div class="progress-section">
-
-          <div class="progress-bar-bg">
 
             <div
-              id="progress-fill"
-              class="progress-bar-fill"
-              style="width: 0%;"
+              id="levelBadge"
+              class="level-badge"
             >
-              0%
+              Loading
             </div>
 
           </div>
 
 
-          <div class="progress-info">
+          <!-- PROGRESS -->
 
-            <span id="progress-text">
-              0 / 1,000 points
-            </span>
+          <div class="progress-section">
 
-            <span>
-              Active
-            </span>
+            <div class="progress-header">
+
+              <div class="progress-title">
+                Progress to next level
+              </div>
+
+
+              <div
+                id="progressPoints"
+                class="progress-points"
+              >
+                —
+              </div>
+
+            </div>
+
+
+            <div class="progress-track">
+
+              <div
+                id="progressFill"
+                class="progress-fill"
+              ></div>
+
+            </div>
+
+
+            <div
+              id="nextLevelText"
+              class="next-level"
+            >
+              —
+            </div>
 
           </div>
 
-        </div>
+        </section>
 
 
-        <!-- EMAIL -->
+        <!-- =========================================
+             LEADERBOARD
+             ========================================= -->
 
-        <div
-          id="user-email-display"
-          class="footer-email"
-        ></div>
+        <section class="card leaderboard-card">
 
+          <div class="leaderboard-header">
+
+            <div>
+
+              <h2 class="leaderboard-title">
+                Leaderboard
+              </h2>
+
+
+              <div class="leaderboard-subtitle">
+                Top 10 + your position
+              </div>
+
+            </div>
+
+
+            <button
+              id="refreshButton"
+              class="refresh-button"
+              type="button"
+              onclick="refreshLeaderboard()"
+              title="Refresh leaderboard"
+            >
+              ↻
+            </button>
+
+          </div>
+
+
+          <div
+            id="leaderboardList"
+            class="leaderboard-list"
+          >
+
+            <div class="leaderboard-loading">
+              Loading leaderboard...
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+
+      <div class="footer">
+        Winter Contest 2026
       </div>
 
     </div>
 
-  </div>
-
-
-  <!-- ===================================================
-       RIGHT: LEADERBOARD
-  ==================================================== -->
-
-  <div class="leaderboard-card">
-
-    <div class="leaderboard-title">
-      🏆 LEADERBOARD
-    </div>
-
-    <div
-      id="leaderboard-list"
-      class="leaderboard-list"
-    >
-      <div class="loading">
-        Loading...
-      </div>
-    </div>
-
-  </div>
+  </section>
 
 </div>
-```
 
-  </div>
-
-</div>
 
 <script>
 
-/* ===========================================================
-   API
-=========================================================== */
+  /* =================================================
+     API
+     ================================================= */
 
-const API_URL =
-  "https://script.google.com/macros/s/AKfycbx_qxUJv2jRQZ8SA9u8tYACaA-gtnTlK7TAG0y1SDLxWGwnpngatP3ajcYpo2bg9Jz_vg/exec";
-
-
-/* ===========================================================
-   LEVELS
-=========================================================== */
-
-const LEVELS = [
-  { points: 0, reward: 0 },
-  { points: 250, reward: 50 },
-  { points: 500, reward: 100 },
-  { points: 1000, reward: 200 },
-  { points: 2500, reward: 500 },
-  { points: 5000, reward: 1200 },
-  { points: 10000, reward: 2500 },
-  { points: 25000, reward: 7000 },
-  { points: 50000, reward: 15000 },
-  { points: 100000, reward: 35000 }
-];
+  const API_URL =
+    "https://script.google.com/macros/s/AKfycbx_qxUJv2jRQZ8SA9u8tYACaA-gtnTlK7TAG0y1SDLxWGwnpngatP3ajcYpo2bg9Jz_vg/exec";
 
 
-function getLevel(points) {
+  /* =================================================
+     GLOBAL STATE
+     ================================================= */
 
-  let current = LEVELS[0];
+  let currentUserId = "";
 
-  for (const level of LEVELS) {
+  let currentUserRank = 0;
 
-    if (points >= level.points) {
-      current = level;
+  let currentUserData = null;
+
+  let leaderboardData = [];
+
+
+  const TOP_COUNT = 10;
+
+
+  /* =================================================
+     LEVELS
+     ================================================= */
+
+  const LEVELS = [
+
+    {
+      name: "Beginner",
+      min: 0
+    },
+
+    {
+      name: "Rookie",
+      min: 100
+    },
+
+    {
+      name: "Rising Star",
+      min: 250
+    },
+
+    {
+      name: "Achiever",
+      min: 500
+    },
+
+    {
+      name: "Expert",
+      min: 1000
+    },
+
+    {
+      name: "Master",
+      min: 2000
+    },
+
+    {
+      name: "Champion",
+      min: 5000
     }
 
-  }
+  ];
 
-  return current;
-}
 
+  /* =================================================
+     EMOJIS
+     ================================================= */
 
-function getNextLevel(points) {
+  const EMOJIS = [
+    "🏆",
+    "🥇",
+    "🥈",
+    "🥉",
+    "🔥",
+    "⚡",
+    "🚀",
+    "❄️",
+    "⭐",
+    "💎"
+  ];
 
-  for (const level of LEVELS) {
 
-    if (points < level.points) {
-      return level;
-    }
+  /* =================================================
+     LEVEL FUNCTIONS
+     ================================================= */
 
-  }
+  function getLevel(points) {
 
-  return null;
-}
+    let level =
+      LEVELS[0];
 
 
-/* ===========================================================
-   EMOJIS
-=========================================================== */
+    for (
+      let i = 0;
+      i < LEVELS.length;
+      i++
+    ) {
 
-const EMOJIS = [
-  "🚀",
-  "⚡",
-  "🔥",
-  "💎",
-  "🌟",
-  "🎯",
-  "👑",
-  "🏆",
-  "🏎️",
-  "🦁",
-  "🦊",
-  "🐻",
-  "🦄",
-  "🦅"
-];
+      if (
+        points >=
+        LEVELS[i].min
+      ) {
 
+        level =
+          LEVELS[i];
 
-function getEmoji(index) {
-  return EMOJIS[index % EMOJIS.length];
-}
+      } else {
 
-
-/* ===========================================================
-   CURRENT USER
-=========================================================== */
-
-let currentUserId = "";
-
-
-/* ===========================================================
-   LOGIN
-=========================================================== */
-
-function login() {
-
-  const input = document.getElementById("user-id");
-  const userId = input.value.trim();
-
-  const error = document.getElementById("login-error");
-
-  error.textContent = "";
-
-  if (!userId) {
-
-    error.textContent =
-      "Please enter your Passcode.";
-
-    return;
-  }
-
-  currentUserId = userId;
-
-  document.getElementById("login-screen").style.display = "none";
-
-  document.getElementById("dashboard").style.display = "block";
-
-  loadPersonalScore(userId);
-
-  loadLeaderboard(userId);
-}
-
-
-/* ===========================================================
-   ENTER KEY LOGIN
-=========================================================== */
-
-document
-  .getElementById("user-id")
-  .addEventListener("keydown", function(e) {
-
-    if (e.key === "Enter") {
-      login();
-    }
-
-  });
-
-
-/* ===========================================================
-   PERSONAL SCORE
-=========================================================== */
-
-async function loadPersonalScore(userId) {
-
-  const loading =
-    document.getElementById("personal-loading");
-
-  const content =
-    document.getElementById("personal-content");
-
-  try {
-
-    const url =
-      API_URL +
-      "?id=" +
-      encodeURIComponent(userId);
-
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error("API Error");
-    }
-
-    const data = await response.json();
-
-    if (!data || data.error) {
-      throw new Error(
-        data?.error || "User not found"
-      );
-    }
-
-    renderPersonalScore(data, userId);
-
-    loading.style.display = "none";
-
-    content.style.display = "block";
-
-  } catch (err) {
-
-    console.error(err);
-
-    loading.textContent =
-      "Unable to load data. Please check your Passcode.";
-
-  }
-
-}
-
-
-/* ===========================================================
-   RENDER PERSONAL SCORE
-=========================================================== */
-
-function renderPersonalScore(data, userId) {
-
-  const points =
-    Number(
-      data.points ??
-      data.score ??
-      0
-    );
-
-  const units =
-    Number(
-      data.units ??
-      Math.floor(points * 0.55)
-    );
-
-  const rank =
-    Number(data.rank || 0);
-
-
-  const level =
-    getLevel(points);
-
-  const next =
-    getNextLevel(points);
-
-
-  document.getElementById("badge-level").textContent =
-    "LEVEL " +
-    LEVELS.indexOf(level);
-
-
-  document.getElementById("stat-units").textContent =
-    units.toLocaleString();
-
-
-  document.getElementById("stat-points").textContent =
-    points.toLocaleString();
-
-
-  document.getElementById("stat-rank").textContent =
-    "#" + rank;
-
-
-  document.getElementById("user-email-display").textContent =
-    "Account: " +
-    (data.email || userId);
-
-
-  /* NEXT LEVEL */
-
-  if (next) {
-
-    document.getElementById("target-points").textContent =
-      next.points.toLocaleString() +
-      " Points";
-
-
-    document.getElementById("target-reward").textContent =
-      "$" +
-      next.reward.toLocaleString();
-
-
-    const pct =
-      Math.max(
-        0,
-        Math.min(
-          100,
-          Math.round(
-            (points / next.points) * 100
-          )
-        )
-      );
-
-
-    document.getElementById("progress-fill").style.width =
-      pct + "%";
-
-
-    document.getElementById("progress-fill").textContent =
-      pct + "%";
-
-
-    document.getElementById("progress-text").textContent =
-      `${points.toLocaleString()} / ${next.points.toLocaleString()} points`;
-
-  }
-
-  /* MAX LEVEL */
-
-  else {
-
-    document.getElementById("target-points").textContent =
-      "MAX LEVEL";
-
-
-    document.getElementById("target-reward").textContent =
-      "🎉";
-
-
-    document.getElementById("progress-fill").style.width =
-      "100%";
-
-
-    document.getElementById("progress-fill").textContent =
-      "100%";
-
-
-    document.getElementById("progress-text").textContent =
-      `${points.toLocaleString()} points`;
-
-  }
-
-}
-
-
-/* ===========================================================
-   LOAD LEADERBOARD
-=========================================================== */
-
-function loadLeaderboard(userId) {
-
-  const callbackName =
-    "leaderboardCallback_" +
-    Date.now();
-
-
-  window[callbackName] = function(data) {
-
-    try {
-
-      if (!data || data.error) {
-
-        throw new Error(
-          data?.error ||
-          "Leaderboard Error"
-        );
+        break;
 
       }
 
+    }
 
-      renderLeaderboard(
-        data.leaderboard || [],
-        userId
+
+    return level;
+
+  }
+
+
+  function getNextLevel(points) {
+
+    for (
+      let i = 0;
+      i < LEVELS.length;
+      i++
+    ) {
+
+      if (
+        points <
+        LEVELS[i].min
+      ) {
+
+        return LEVELS[i];
+
+      }
+
+    }
+
+
+    return null;
+
+  }
+
+
+  /* =================================================
+     LOGIN
+     ================================================= */
+
+  async function login() {
+
+    const input =
+      document.getElementById(
+        "userIdInput"
       );
+
+
+    const button =
+      document.getElementById(
+        "loginButton"
+      );
+
+
+    const error =
+      document.getElementById(
+        "loginError"
+      );
+
+
+    const userId =
+      String(
+        input.value || ""
+      ).trim();
+
+
+    error.textContent = "";
+
+
+    if (!userId) {
+
+      error.textContent =
+        "Please enter your User ID.";
+
+      input.focus();
+
+      return;
+
+    }
+
+
+    currentUserId =
+      userId;
+
+
+    button.disabled = true;
+
+    button.textContent =
+      "Loading...";
+
+
+    try {
+
+      /*
+       * IMPORTANT:
+       *
+       * Personal score MUST load first.
+       * It gives us the authoritative rank.
+       *
+       * Only after that do we load leaderboard.
+       */
+
+      await loadPersonalScore(
+        currentUserId
+      );
+
+
+      await loadLeaderboard(
+        currentUserId,
+        currentUserRank
+      );
+
+
+      document
+        .getElementById(
+          "loginScreen"
+        )
+        .style.display =
+        "none";
+
+
+      document
+        .getElementById(
+          "dashboard"
+        )
+        .style.display =
+        "block";
+
 
     } catch (err) {
 
       console.error(err);
 
-      document.getElementById(
-        "leaderboard-list"
-      ).innerHTML =
-        '<div class="loading">Failed to load.</div>';
+
+      currentUserId = "";
+
+      currentUserRank = 0;
+
+      currentUserData = null;
+
+
+      error.textContent =
+        err.message ||
+        "Unable to load your score.";
+
 
     } finally {
 
-      delete window[callbackName];
+      button.disabled = false;
+
+      button.textContent =
+        "View My Score";
 
     }
-
-  };
-
-
-  const script =
-    document.createElement("script");
-
-
-  script.src =
-    API_URL +
-    "?mode=leaderboard&callback=" +
-    callbackName;
-
-
-  script.onerror = function() {
-
-    document.getElementById(
-      "leaderboard-list"
-    ).innerHTML =
-      '<div class="loading">Failed to load.</div>';
-
-    delete window[callbackName];
-
-  };
-
-
-  document.body.appendChild(script);
-}
-
-
-/* ===========================================================
-   RENDER LEADERBOARD
-=========================================================== */
-
-function renderLeaderboard(rows, userId) {
-
-  const container =
-    document.getElementById(
-      "leaderboard-list"
-    );
-
-  container.innerHTML = "";
-
-
-  /* NO DATA */
-
-  if (
-    !Array.isArray(rows) ||
-    rows.length === 0
-  ) {
-
-    container.innerHTML =
-      '<div class="loading">No data</div>';
-
-    return;
-  }
-
-
-  /* ========================================================
-     NORMALIZE DATA
-  ======================================================== */
-
-  const normalized =
-    rows.map((row, index) => ({
-
-      rank:
-        Number(
-          row.rank ??
-          index + 1
-        ),
-
-      email:
-        String(
-          row.email ??
-          row.userId ??
-          row.id ??
-          ""
-        ).trim(),
-
-      points:
-        Number(
-          row.points ??
-          row.score ??
-          0
-        ),
-
-      emojiIndex:
-        index
-
-    }));
-
-
-  /* ========================================================
-     SORT BY RANK
-  ======================================================== */
-
-  normalized.sort(
-    (a, b) =>
-      a.rank - b.rank
-  );
-
-
-  /* ========================================================
-     FIND CURRENT USER
-  ======================================================== */
-
-  const normalizedUser =
-    String(userId || "")
-      .trim()
-      .toLowerCase();
-
-
-  const youIndex =
-    normalized.findIndex(row => {
-
-      const email =
-        row.email
-          .trim()
-          .toLowerCase();
-
-      return (
-        email === normalizedUser ||
-        email.includes(normalizedUser) ||
-        normalizedUser.includes(email)
-      );
-
-    });
-
-
-  /* ========================================================
-     TOP 10
-  ======================================================== */
-
-  const TOP_COUNT = 10;
-
-  let displayRows = [];
-
-
-  /* ========================================================
-     CASE 1:
-     USER IS IN TOP 10
-     
-     Show ONLY Top 10
-  ======================================================== */
-
-  if (
-    youIndex >= 0 &&
-    youIndex < TOP_COUNT
-  ) {
-
-    displayRows =
-      normalized.slice(
-        0,
-        TOP_COUNT
-      );
 
   }
 
 
-  /* ========================================================
-     CASE 2:
-     USER IS OUTSIDE TOP 10
-     
-     Show:
-     Top 10
-     +
-     person immediately above
-     +
-     YOU
-     +
-     person immediately below
-  ======================================================== */
+  /* =================================================
+     ENTER KEY LOGIN
+     ================================================= */
 
-  else if (
-    youIndex >= TOP_COUNT
-  ) {
+  document
+    .getElementById(
+      "userIdInput"
+    )
+    .addEventListener(
+      "keydown",
+      function(event) {
 
-    /* TOP 10 */
+        if (
+          event.key === "Enter"
+        ) {
 
-    displayRows =
-      normalized.slice(
-        0,
-        TOP_COUNT
-      );
+          login();
 
+        }
 
-    /* SEPARATOR */
-
-    displayRows.push({
-      separator: true
-    });
-
-
-    /* PERSON ABOVE */
-
-    if (
-      youIndex - 1 >= TOP_COUNT
-    ) {
-
-      displayRows.push(
-        normalized[
-          youIndex - 1
-        ]
-      );
-
-    }
-
-
-    /* YOU */
-
-    displayRows.push(
-      normalized[youIndex]
+      }
     );
 
 
-    /* PERSON BELOW */
+  /* =================================================
+     LOAD PERSONAL SCORE
+     ================================================= */
 
-    if (
-      youIndex + 1 <
-      normalized.length
-    ) {
+  async function loadPersonalScore(
+    userId
+  ) {
 
-      displayRows.push(
-        normalized[
-          youIndex + 1
-        ]
+    const url =
+      API_URL +
+      "?id=" +
+      encodeURIComponent(
+        userId
+      );
+
+
+    const response =
+      await fetch(
+        url,
+        {
+          method: "GET",
+          cache: "no-store"
+        }
+      );
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Unable to connect to score API."
       );
 
     }
 
-  }
+
+    const data =
+      await response.json();
 
 
-  /* ========================================================
-     CASE 3:
-     USER NOT FOUND
-     
-     Show Top 10
-  ======================================================== */
+    if (
+      data.error
+    ) {
 
-  else {
-
-    displayRows =
-      normalized.slice(
-        0,
-        TOP_COUNT
+      throw new Error(
+        data.error
       );
 
+    }
+
+
+    /*
+     * IMPORTANT:
+     *
+     * Rank comes from the personal API.
+     * We do NOT try to calculate it
+     * from the frontend.
+     */
+
+    currentUserRank =
+      Number(
+        data.rank || 0
+      );
+
+
+    if (
+      !currentUserRank ||
+      currentUserRank < 1
+    ) {
+
+      throw new Error(
+        "Your rank could not be determined."
+      );
+
+    }
+
+
+    currentUserData =
+      data;
+
+
+    renderPersonalScore(
+      data
+    );
+
   }
 
 
-  /* ========================================================
-     RENDER
-  ======================================================== */
+  /* =================================================
+     RENDER PERSONAL SCORE
+     ================================================= */
 
-  displayRows.forEach(row => {
+  function renderPersonalScore(
+    data
+  ) {
+
+    const points =
+      Number(
+        data.points || 0
+      );
 
 
-    /* ================================================
-       SEPARATOR
-    ================================================= */
+    const units =
+      Number(
+        data.units || 0
+      );
 
-    if (row.separator) {
 
-      const sep =
-        document.createElement(
-          "div"
+    const rank =
+      Number(
+        data.rank || 0
+      );
+
+
+    const email =
+      String(
+        data.email || ""
+      );
+
+
+    const level =
+      getLevel(
+        points
+      );
+
+
+    const nextLevel =
+      getNextLevel(
+        points
+      );
+
+
+    document
+      .getElementById(
+        "scoreEmail"
+      )
+      .textContent =
+      email ||
+      data.userId ||
+      "";
+
+
+    document
+      .getElementById(
+        "pointsValue"
+      )
+      .textContent =
+      formatNumber(
+        points
+      );
+
+
+    document
+      .getElementById(
+        "unitsValue"
+      )
+      .textContent =
+      formatNumber(
+        units
+      );
+
+
+    document
+      .getElementById(
+        "rankValue"
+      )
+      .textContent =
+      "#" +
+      rank;
+
+
+    document
+      .getElementById(
+        "levelBadge"
+      )
+      .textContent =
+      level.name;
+
+
+    /* ---------------------------------------------
+       Progress
+       --------------------------------------------- */
+
+    let progress = 100;
+
+
+    if (nextLevel) {
+
+      const currentMin =
+        level.min;
+
+
+      const nextMin =
+        nextLevel.min;
+
+
+      const range =
+        nextMin -
+        currentMin;
+
+
+      const completed =
+        points -
+        currentMin;
+
+
+      progress =
+        range > 0
+          ? (
+              completed /
+              range
+            ) * 100
+          : 0;
+
+
+      progress =
+        Math.max(
+          0,
+          Math.min(
+            100,
+            progress
+          )
         );
 
-      sep.className =
-        "mini-separator";
 
-      sep.textContent =
-        "• • •";
+      document
+        .getElementById(
+          "progressPoints"
+        )
+        .textContent =
+        formatNumber(
+          points
+        ) +
+        " / " +
+        formatNumber(
+          nextMin
+        );
 
-      container.appendChild(
-        sep
+
+      document
+        .getElementById(
+          "nextLevelText"
+        )
+        .textContent =
+        "Next: " +
+        nextLevel.name +
+        " at " +
+        formatNumber(
+          nextMin
+        ) +
+        " points";
+
+    } else {
+
+      document
+        .getElementById(
+          "progressPoints"
+        )
+        .textContent =
+        "MAX LEVEL";
+
+
+      document
+        .getElementById(
+          "nextLevelText"
+        )
+        .textContent =
+        "You have reached the highest level.";
+
+    }
+
+
+    document
+      .getElementById(
+        "progressFill"
+      )
+      .style.width =
+      progress +
+      "%";
+
+  }
+
+
+  /* =================================================
+     LOAD LEADERBOARD
+     ================================================= */
+
+  function loadLeaderboard(
+    userId,
+    userRank
+  ) {
+
+    return new Promise(
+      function(resolve, reject) {
+
+        const callbackName =
+          "winterLeaderboard_" +
+          Date.now() +
+          "_" +
+          Math.floor(
+            Math.random() *
+            100000
+          );
+
+
+        const script =
+          document.createElement(
+            "script"
+          );
+
+
+        let finished = false;
+
+
+        function cleanup() {
+
+          if (
+            script.parentNode
+          ) {
+
+            script.parentNode
+              .removeChild(
+                script
+              );
+
+          }
+
+
+          try {
+
+            delete window[
+              callbackName
+            ];
+
+          } catch (e) {
+
+            window[
+              callbackName
+            ] = undefined;
+
+          }
+
+        }
+
+
+        function finishSuccess(
+          data
+        ) {
+
+          if (finished) {
+            return;
+          }
+
+
+          finished = true;
+
+          cleanup();
+
+
+          if (
+            !data ||
+            data.error
+          ) {
+
+            reject(
+              new Error(
+                data &&
+                data.error
+                  ? data.error
+                  : "Leaderboard API error."
+              )
+            );
+
+            return;
+
+          }
+
+
+          leaderboardData =
+            Array.isArray(
+              data.leaderboard
+            )
+              ? data.leaderboard
+              : [];
+
+
+          renderLeaderboard(
+            leaderboardData,
+            userId,
+            userRank
+          );
+
+
+          resolve(
+            leaderboardData
+          );
+
+        }
+
+
+        function finishError() {
+
+          if (finished) {
+            return;
+          }
+
+
+          finished = true;
+
+          cleanup();
+
+
+          reject(
+            new Error(
+              "Unable to load leaderboard."
+            )
+          );
+
+        }
+
+
+        window[
+          callbackName
+        ] =
+          finishSuccess;
+
+
+        script.onerror =
+          finishError;
+
+
+        script.src =
+          API_URL +
+          "?mode=leaderboard" +
+          "&callback=" +
+          encodeURIComponent(
+            callbackName
+          ) +
+          "&_=" +
+          Date.now();
+
+
+        document
+          .body
+          .appendChild(
+            script
+          );
+
+
+        /*
+         * Safety timeout
+         */
+
+        setTimeout(
+          function() {
+
+            if (!finished) {
+
+              finishError();
+
+            }
+
+          },
+          15000
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =================================================
+     RENDER LEADERBOARD
+     ================================================= */
+
+  function renderLeaderboard(
+    rows,
+    userId,
+    userRank
+  ) {
+
+    const container =
+      document.getElementById(
+        "leaderboardList"
       );
 
+
+    if (
+      !Array.isArray(rows) ||
+      rows.length === 0
+    ) {
+
+      container.innerHTML =
+        `
+          <div class="leaderboard-error">
+            No leaderboard data available.
+          </div>
+        `;
+
+      return;
+
+    }
+
+
+    /* ---------------------------------------------
+       Normalize rows
+       --------------------------------------------- */
+
+    const normalized =
+      rows
+        .map(
+          function(row) {
+
+            return {
+
+              userId:
+                String(
+                  row.userId ||
+                  row.id ||
+                  ""
+                ).trim(),
+
+              email:
+                String(
+                  row.email ||
+                  row.userId ||
+                  row.id ||
+                  "Anonymous"
+                ).trim(),
+
+              units:
+                Number(
+                  row.units || 0
+                ),
+
+              points:
+                Number(
+                  row.points || 0
+                ),
+
+              rank:
+                Number(
+                  row.rank || 0
+                )
+
+            };
+
+          }
+        )
+        .filter(
+          function(row) {
+
+            return (
+              row.rank > 0
+            );
+
+          }
+        );
+
+
+    /*
+     * Sort by rank.
+     *
+     * Backend already sorts correctly,
+     * but we sort again defensively.
+     */
+
+    normalized.sort(
+      function(a, b) {
+
+        return (
+          a.rank -
+          b.rank
+        );
+
+      }
+    );
+
+
+    /* ---------------------------------------------
+       Determine current user's rank
+       --------------------------------------------- */
+
+    const safeUserRank =
+      Number(
+        userRank || 0
+      );
+
+
+    if (
+      !safeUserRank ||
+      safeUserRank < 1
+    ) {
+
+      renderTopTenOnly(
+        container,
+        normalized,
+        userId
+      );
+
+      return;
+
+    }
+
+
+    /*
+     * We deliberately use rank rather than
+     * matching the passcode/user ID.
+     *
+     * The personal API is the source of truth
+     * for the current user's rank.
+     */
+
+    let displayRows = [];
+
+
+    /* ---------------------------------------------
+       USER IS IN TOP 10
+       --------------------------------------------- */
+
+    if (
+      safeUserRank <= TOP_COUNT
+    ) {
+
+      /*
+       * Show all rows belonging to ranks 1-10.
+       *
+       * If multiple people have the same
+       * competition rank, all of them are kept.
+       */
+
+      displayRows =
+        normalized.filter(
+          function(row) {
+
+            return (
+              row.rank <=
+              TOP_COUNT
+            );
+
+          }
+        );
+
+
+    } else {
+
+      /* -------------------------------------------
+         USER IS OUTSIDE TOP 10
+         ------------------------------------------- */
+
+      const topRows =
+        normalized.filter(
+          function(row) {
+
+            return (
+              row.rank <=
+              TOP_COUNT
+            );
+
+          }
+        );
+
+
+      const neighborRows =
+        normalized.filter(
+          function(row) {
+
+            return (
+              row.rank ===
+                safeUserRank - 1 ||
+              row.rank ===
+                safeUserRank ||
+              row.rank ===
+                safeUserRank + 1
+            );
+
+          }
+        );
+
+
+      displayRows =
+        topRows.concat(
+          neighborRows
+        );
+
+    }
+
+
+    /* ---------------------------------------------
+       Remove duplicate rows
+       --------------------------------------------- */
+
+    const uniqueRows = [];
+
+    const seenKeys =
+      new Set();
+
+
+    displayRows.forEach(
+      function(row) {
+
+        const key =
+          row.userId ||
+          (
+            row.rank +
+            "|" +
+            row.email
+          );
+
+
+        if (
+          !seenKeys.has(key)
+        ) {
+
+          seenKeys.add(key);
+
+          uniqueRows.push(
+            row
+          );
+
+        }
+
+      }
+    );
+
+
+    uniqueRows.sort(
+      function(a, b) {
+
+        return (
+          a.rank -
+          b.rank
+        );
+
+      }
+    );
+
+
+    /* ---------------------------------------------
+       Render
+       --------------------------------------------- */
+
+    let html = "";
+
+    let previousRank = null;
+
+
+    uniqueRows.forEach(
+      function(row, index) {
+
+        /*
+         * Insert separator when moving from
+         * Top 10 to the user's area.
+         */
+
+        if (
+          safeUserRank > TOP_COUNT &&
+          previousRank !== null &&
+          previousRank <= TOP_COUNT &&
+          row.rank > TOP_COUNT
+        ) {
+
+          html +=
+            `
+              <div class="leaderboard-separator">
+                YOUR POSITION
+              </div>
+            `;
+
+        }
+
+
+        /*
+         * Determine YOU.
+         *
+         * Primary rule:
+         * rank === personal API rank.
+         *
+         * Secondary rule:
+         * exact user ID match if available.
+         *
+         * This handles ties safely.
+         */
+
+        const isExactUser =
+          (
+            userId &&
+            row.userId &&
+            row.userId.toLowerCase() ===
+            String(userId).toLowerCase()
+          );
+
+
+        const isYou =
+          isExactUser ||
+          (
+            row.rank ===
+            safeUserRank
+          );
+
+
+        html +=
+          createLeaderboardRow(
+            row,
+            isYou,
+            index
+          );
+
+
+        previousRank =
+          row.rank;
+
+      }
+    );
+
+
+    /*
+     * If the user's rank is outside Top 10
+     * but the API did not return neighboring rows,
+     * show a clear message instead of silently
+     * pretending the data is correct.
+     */
+
+    if (
+      safeUserRank > TOP_COUNT
+    ) {
+
+      const hasUserRank =
+        normalized.some(
+          function(row) {
+
+            return (
+              row.rank ===
+              safeUserRank
+            );
+
+          }
+        );
+
+
+      if (!hasUserRank) {
+
+        html +=
+          `
+            <div class="leaderboard-error">
+              Your rank is #${safeUserRank},
+              but your position could not be loaded.
+            </div>
+          `;
+
+      }
+
+    }
+
+
+    container.innerHTML =
+      html;
+
+  }
+
+
+  /* =================================================
+     TOP 10 FALLBACK
+     ================================================= */
+
+  function renderTopTenOnly(
+    container,
+    rows,
+    userId
+  ) {
+
+    const topRows =
+      rows.filter(
+        function(row) {
+
+          return (
+            row.rank <=
+            TOP_COUNT
+          );
+
+        }
+      );
+
+
+    if (
+      topRows.length === 0
+    ) {
+
+      container.innerHTML =
+        `
+          <div class="leaderboard-error">
+            No leaderboard data available.
+          </div>
+        `;
+
+      return;
+
+    }
+
+
+    let html = "";
+
+
+    topRows.forEach(
+      function(row, index) {
+
+        const isYou =
+          userId &&
+          row.userId &&
+          row.userId.toLowerCase() ===
+          String(
+            userId
+          ).toLowerCase();
+
+
+        html +=
+          createLeaderboardRow(
+            row,
+            isYou,
+            index
+          );
+
+      }
+    );
+
+
+    container.innerHTML =
+      html;
+
+  }
+
+
+  /* =================================================
+     CREATE LEADERBOARD ROW
+     ================================================= */
+
+  function createLeaderboardRow(
+    row,
+    isYou,
+    index
+  ) {
+
+    const rank =
+      Number(
+        row.rank || 0
+      );
+
+
+    const emoji =
+      EMOJIS[
+        Math.min(
+          index,
+          EMOJIS.length - 1
+        )
+      ] ||
+      "⭐";
+
+
+    const badge =
+      isYou
+        ? `
+            <div class="mini-emoji you-label">
+              YOU
+            </div>
+          `
+        : `
+            <div class="mini-emoji">
+              ${emoji}
+            </div>
+          `;
+
+
+    const youClass =
+      isYou
+        ? " you"
+        : "";
+
+
+    const displayName =
+      row.email ||
+      row.userId ||
+      "Anonymous";
+
+
+    return `
+      <div class="leaderboard-row${youClass}">
+
+        <div class="leaderboard-rank">
+          #${rank}
+        </div>
+
+        ${badge}
+
+        <div class="leaderboard-user">
+
+          <div
+            class="leaderboard-email"
+            title="${escapeHtml(displayName)}"
+          >
+            ${escapeHtml(displayName)}
+          </div>
+
+        </div>
+
+        <div class="leaderboard-points">
+          ${formatNumber(row.points)} pts
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  /* =================================================
+     REFRESH LEADERBOARD
+     ================================================= */
+
+  async function refreshLeaderboard() {
+
+    const button =
+      document.getElementById(
+        "refreshButton"
+      );
+
+
+    if (!currentUserId) {
       return;
     }
 
 
-    /* ================================================
-       IS USER?
-    ================================================= */
-
-    const rowEmail =
-      row.email
-        .trim()
-        .toLowerCase();
+    const oldText =
+      button.textContent;
 
 
-    const isYou =
-      rowEmail === normalizedUser ||
-      rowEmail.includes(normalizedUser) ||
-      normalizedUser.includes(rowEmail);
+    button.disabled = true;
+
+    button.textContent =
+      "…";
 
 
-    /* ================================================
-       RANK CLASS
-    ================================================= */
+    try {
 
-    let rankClass = "";
+      await loadLeaderboard(
+        currentUserId,
+        currentUserRank
+      );
 
 
-    if (row.rank === 1) {
+    } catch (err) {
 
-      rankClass = " rank-1";
+      console.error(err);
 
-    } else if (row.rank === 2) {
+      document
+        .getElementById(
+          "leaderboardList"
+        )
+        .innerHTML =
+        `
+          <div class="leaderboard-error">
+            Unable to refresh leaderboard.
+          </div>
+        `;
 
-      rankClass = " rank-2";
+    } finally {
 
-    } else if (row.rank === 3) {
+      button.disabled = false;
 
-      rankClass = " rank-3";
+      button.textContent =
+        oldText;
+
+    }
+
+  }
+
+
+  /* =================================================
+     LOGOUT
+     ================================================= */
+
+  function logout() {
+
+    currentUserId = "";
+
+    currentUserRank = 0;
+
+    currentUserData = null;
+
+    leaderboardData = [];
+
+
+    document
+      .getElementById(
+        "dashboard"
+      )
+      .style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "loginScreen"
+      )
+      .style.display =
+      "flex";
+
+
+    document
+      .getElementById(
+        "userIdInput"
+      )
+      .value =
+      "";
+
+
+    document
+      .getElementById(
+        "loginError"
+      )
+      .textContent =
+      "";
+
+
+    document
+      .getElementById(
+        "leaderboardList"
+      )
+      .innerHTML =
+      `
+        <div class="leaderboard-loading">
+          Loading leaderboard...
+        </div>
+      `;
+
+
+    document
+      .getElementById(
+        "pointsValue"
+      )
+      .textContent =
+      "—";
+
+
+    document
+      .getElementById(
+        "unitsValue"
+      )
+      .textContent =
+      "—";
+
+
+    document
+      .getElementById(
+        "rankValue"
+      )
+      .textContent =
+      "—";
+
+
+    document
+      .getElementById(
+        "progressFill"
+      )
+      .style.width =
+      "0%";
+
+
+    document
+      .getElementById(
+        "levelBadge"
+      )
+      .textContent =
+      "Loading";
+
+  }
+
+
+  /* =================================================
+     FORMAT NUMBER
+     ================================================= */
+
+  function formatNumber(
+    value
+  ) {
+
+    const number =
+      Number(
+        value || 0
+      );
+
+
+    if (
+      !Number.isFinite(number)
+    ) {
+
+      return "0";
 
     }
 
 
-    /* ================================================
-       ROW
-    ================================================= */
-
-    const rowEl =
-      document.createElement(
-        "div"
-      );
-
-
-    rowEl.className =
-      "mini-row" +
-      rankClass +
-      (isYou ? " you" : "");
-
-
-    /* ================================================
-       LEFT
-    ================================================= */
-
-    const left =
-      document.createElement(
-        "div"
-      );
-
-    left.className =
-      "mini-left";
-
-
-    /* ================================================
-       RANK
-    ================================================= */
-
-    const rank =
-      document.createElement(
-        "div"
-      );
-
-    rank.className =
-      "mini-rank";
-
-
-    if (row.rank === 1) {
-
-      rank.textContent = "🥇";
-
-    } else if (row.rank === 2) {
-
-      rank.textContent = "🥈";
-
-    } else if (row.rank === 3) {
-
-      rank.textContent = "🥉";
-
-    } else {
-
-      rank.textContent =
-        "#" + row.rank;
-
-    }
-
-
-    /* ================================================
-       EMOJI / YOU
-    ================================================= */
-
-    const emoji =
-      document.createElement(
-        "div"
-      );
-
-
-    if (isYou) {
-
-      emoji.className =
-        "mini-emoji you-label";
-
-      emoji.textContent =
-        "YOU";
-
-    } else {
-
-      emoji.className =
-        "mini-emoji";
-
-      emoji.textContent =
-        getEmoji(
-          row.emojiIndex
-        );
-
-    }
-
-
-    /* ================================================
-       ADD LEFT CONTENT
-    ================================================= */
-
-    left.appendChild(rank);
-
-    left.appendChild(emoji);
-
-
-    /* ================================================
-       POINTS
-    ================================================= */
-
-    const points =
-      document.createElement(
-        "div"
-      );
-
-    points.className =
-      "mini-points";
-
-    points.textContent =
-      row.points.toLocaleString() +
-      " pts";
-
-
-    /* ================================================
-       ADD TO ROW
-    ================================================= */
-
-    rowEl.appendChild(left);
-
-    rowEl.appendChild(points);
-
-
-    /* ================================================
-       ADD TO CONTAINER
-    ================================================= */
-
-    container.appendChild(
-      rowEl
+    return number.toLocaleString(
+      "en-US"
     );
 
-  });
+  }
 
-}
+
+  /* =================================================
+     ESCAPE HTML
+     ================================================= */
+
+  function escapeHtml(
+    value
+  ) {
+
+    return String(
+      value || ""
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+  }
 
 </script>
 
