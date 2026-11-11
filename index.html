@@ -1494,7 +1494,7 @@ function postLogin(email,passcode){
    let done=false;
    const timer=setTimeout(()=>finish(null),20000);
    function finish(data){if(done)return;done=true;clearTimeout(timer);window.removeEventListener('message',onMessage);if(data)resolve(data);else reject(new Error('Unable to connect. Please try again.'));}
-   function onMessage(event){if(event.source!==frame.contentWindow||!event.data||event.data.nonce!==nonce)return;finish(event.data);}
+   function onMessage(event){if(!event.data||typeof event.data!=='object'||event.data.nonce!==nonce)return;finish(event.data);}
    window.addEventListener('message',onMessage);
    const form=document.createElement('form');form.method='POST';form.action=API_URL;form.target='loginTransport';form.style.display='none';
    [['action','login'],['email',email],['passcode',passcode],['nonce',nonce]].forEach(([k,v])=>{const i=document.createElement('input');i.type='hidden';i.name=k;i.value=v;form.appendChild(i);});
