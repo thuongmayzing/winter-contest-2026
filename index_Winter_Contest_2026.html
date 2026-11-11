@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Winter Contest 2026</title>
+
+
+  <!-- Google Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <style>
+
+    /* =================================================
+       RESET
+       ================================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+
+    body {
+
+      font-family: "Inter", sans-serif;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f7fbff 0%,
+          #eef7ff 50%,
+          #ffffff 100%
+        );
+
+      color: #17324d;
+
+      min-height: 100vh;
+    }
+
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+
+    /* =================================================
+       APP
+       ================================================= */
+
+    .app {
+      min-height: 100vh;
+      width: 100%;
+    }
+
+
+    /* =================================================
+       LOGIN
+       ================================================= */
+
+    .login-screen {
+
+      min-height: 100vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 24px;
+    }
+
+
+    .login-card {
+
+      width: 100%;
+
+      max-width: 430px;
+
+      background: #ffffff;
+
+      border-radius: 24px;
+
+      padding: 36px 30px;
+
+      box-shadow:
+        0 20px 60px rgba(27, 80, 120, 0.12);
+
+      border: 1px solid #e7f0f7;
+
+      text-align: center;
+    }
+
+
+    .login-icon {
+
+      width: 76px;
+
+      height: 76px;
+
+      margin: 0 auto 20px;
+
+      border-radius: 22px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #eaf7ff;
+
+      font-size: 38px;
+    }
+
+
+    .login-title {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 28px;
+
+      font-weight: 800;
+
+      color: #123c5a;
+
+      margin-bottom: 8px;
+    }
+
+
+    .login-subtitle {
+
+      color: #7890a2;
+
+      font-size: 14px;
+
+      line-height: 1.6;
+
+      margin-bottom: 26px;
+    }
+
+
+    .input-label {
+
+      display: block;
+
+      text-align: left;
+
+      margin-bottom: 8px;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      color: #47667e;
+    }
+
+
+    .login-input {
+
+      width: 100%;
+
+      height: 52px;
+
+      border-radius: 14px;
+
+      border: 1px solid #d8e7f1;
+
+      background: #fafdff;
+
+      padding: 0 16px;
+
+      outline: none;
+
+      color: #17324d;
+
+      font-size: 14px;
+
+      transition: 0.2s ease;
+
+      margin-bottom: 14px;
+    }
+
+
+    .login-input:focus {
+
+      border-color: #51a9df;
+
+      box-shadow:
+        0 0 0 4px rgba(81, 169, 223, 0.12);
+    }
+
+
+    .login-button {
+
+      width: 100%;
+
+      height: 52px;
+
+      border: 0;
+
+      border-radius: 14px;
+
+      background: #238bc4;
+
+      color: #ffffff;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      transition: 0.2s ease;
+    }
+
+
+    .login-button:hover {
+
+      background: #1877aa;
+
+      transform: translateY(-1px);
+    }
+
+
+    .login-button:disabled {
+
+      opacity: 0.65;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+
+    .login-error {
+
+      min-height: 20px;
+
+      margin-top: 14px;
+
+      font-size: 13px;
+
+      color: #d9534f;
+
+      font-weight: 600;
+    }
+
+
+    /* =================================================
+       DASHBOARD
+       ================================================= */
+
+    .dashboard {
+
+      display: none;
+
+      min-height: 100vh;
+
+      padding: 30px;
+    }
+
+
+    .dashboard-container {
+
+      max-width: 1180px;
+
+      margin: 0 auto;
+    }
+
+
+    /* =================================================
+       HEADER
+       ================================================= */
+
+    .top-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      margin-bottom: 26px;
+    }
+
+
+    .brand {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+    }
+
+
+    .brand-icon {
+
+      width: 54px;
+
+      height: 54px;
+
+      border-radius: 16px;
+
+      background: #e8f6ff;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 28px;
+    }
+
+
+    .brand-title {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 24px;
+
+      font-weight: 800;
+
+      color: #123c5a;
+    }
+
+
+    .brand-subtitle {
+
+      font-size: 12px;
+
+      color: #8297a8;
+
+      margin-top: 3px;
+    }
+
+
+    .logout-button {
+
+      border: 1px solid #dce9f1;
+
+      background: #ffffff;
+
+      color: #607b8e;
+
+      padding: 10px 16px;
+
+      border-radius: 12px;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+
+    .logout-button:hover {
+
+      background: #f4f9fc;
+    }
+
+
+    /* =================================================
+       GRID
+       ================================================= */
+
+    .dashboard-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(360px, 0.9fr);
+
+      gap: 22px;
+
+      align-items: start;
+    }
+
+
+    /* =================================================
+       CARDS
+       ================================================= */
+
+    .card {
+
+      background: #ffffff;
+
+      border-radius: 22px;
+
+      border: 1px solid #e5eef5;
+
+      box-shadow:
+        0 12px 35px rgba(27, 80, 120, 0.07);
+    }
+
+
+    /* =================================================
+       PERSONAL SCORE
+       ================================================= */
+
+    .score-card {
+
+      padding: 28px;
+    }
+
+
+    .section-label {
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.08em;
+
+      text-transform: uppercase;
+
+      color: #7d96a8;
+
+      margin-bottom: 10px;
+    }
+
+
+    .score-title {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 25px;
+
+      font-weight: 800;
+
+      color: #173f5f;
+
+      margin-bottom: 5px;
+    }
+
+
+    .score-email {
+
+      font-size: 13px;
+
+      color: #8aa0b0;
+
+      margin-bottom: 28px;
+
+      word-break: break-word;
+    }
+
+
+    .score-main {
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+      gap: 14px;
+
+      margin-bottom: 16px;
+    }
+
+
+    .score-box {
+
+      padding: 20px;
+
+      border-radius: 18px;
+
+      background: #f7fbfe;
+
+      border: 1px solid #e7f1f7;
+    }
+
+
+    .score-box-label {
+
+      font-size: 12px;
+
+      color: #849aaa;
+
+      font-weight: 600;
+
+      margin-bottom: 8px;
+    }
+
+
+    .score-number {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 32px;
+
+      font-weight: 800;
+
+      color: #1e80b7;
+    }
+
+
+    .score-unit {
+
+      font-size: 12px;
+
+      color: #7891a2;
+
+      margin-left: 3px;
+    }
+
+
+    .rank-box {
+
+      margin-top: 4px;
+
+      padding: 22px;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #eaf7ff,
+          #f6fbff
+        );
+
+      border: 1px solid #dceff9;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+
+    .rank-left-label {
+
+      font-size: 12px;
+
+      color: #7790a1;
+
+      font-weight: 700;
+
+      margin-bottom: 5px;
+    }
+
+
+    .rank-value {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 36px;
+
+      font-weight: 800;
+
+      color: #147db6;
+    }
+
+
+    .level-badge {
+
+      padding: 10px 15px;
+
+      border-radius: 12px;
+
+      background: #ffffff;
+
+      border: 1px solid #d9ebf5;
+
+      color: #29779e;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+
+    /* =================================================
+       PROGRESS
+       ================================================= */
+
+    .progress-section {
+
+      margin-top: 22px;
+    }
+
+
+    .progress-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .progress-title {
+
+      font-size: 12px;
+
+      color: #71899b;
+
+      font-weight: 700;
+    }
+
+
+    .progress-points {
+
+      font-size: 12px;
+
+      color: #8097a8;
+
+      font-weight: 700;
+    }
+
+
+    .progress-track {
+
+      width: 100%;
+
+      height: 9px;
+
+      border-radius: 99px;
+
+      background: #eaf2f7;
+
+      overflow: hidden;
+    }
+
+
+    .progress-fill {
+
+      height: 100%;
+
+      width: 0%;
+
+      border-radius: 99px;
+
+      background: #3da0d2;
+
+      transition: width 0.6s ease;
+    }
+
+
+    .next-level {
+
+      margin-top: 9px;
+
+      font-size: 12px;
+
+      color: #8aa0ae;
+    }
+
+
+    /* =================================================
+       LEADERBOARD CARD
+       ================================================= */
+
+    .leaderboard-card {
+
+      padding: 24px;
+    }
+
+
+    .leaderboard-header {
+
+      display: flex;
+
+      align-items: flex-start;
+
+      justify-content: space-between;
+
+      gap: 12px;
+
+      margin-bottom: 18px;
+    }
+
+
+    .leaderboard-title {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 21px;
+
+      font-weight: 800;
+
+      color: #173f5f;
+    }
+
+
+    .leaderboard-subtitle {
+
+      font-size: 12px;
+
+      color: #8aa0ae;
+
+      margin-top: 4px;
+    }
+
+
+    .refresh-button {
+
+      width: 38px;
+
+      height: 38px;
+
+      border-radius: 11px;
+
+      border: 1px solid #dfebf2;
+
+      background: #ffffff;
+
+      color: #4784a4;
+
+      cursor: pointer;
+
+      font-size: 16px;
+    }
+
+
+    .refresh-button:hover {
+
+      background: #f5fafd;
+    }
+
+
+    /* =================================================
+       LEADERBOARD LIST
+       ================================================= */
+
+    .leaderboard-list {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 7px;
+    }
+
+
+    .leaderboard-row {
+
+      display: grid;
+
+      grid-template-columns:
+        40px
+        38px
+        minmax(0, 1fr)
+        auto;
+
+      align-items: center;
+
+      gap: 10px;
+
+      min-height: 57px;
+
+      padding: 8px 12px;
+
+      border-radius: 15px;
+
+      background: #f9fcfe;
+
+      border: 1px solid transparent;
+
+      transition: 0.15s ease;
+    }
+
+
+    .leaderboard-row:hover {
+
+      border-color: #dcecf5;
+
+      background: #f5fafd;
+    }
+
+
+    .leaderboard-row.you {
+
+      background:
+        linear-gradient(
+          135deg,
+          #e9f7ff,
+          #f5fbff
+        );
+
+      border-color: #a9daf2;
+
+      box-shadow:
+        0 5px 18px rgba(49, 148, 200, 0.10);
+    }
+
+
+    .leaderboard-rank {
+
+      font-family: "Montserrat", sans-serif;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      color: #7790a1;
+
+      text-align: center;
+    }
+
+
+    .leaderboard-row.you .leaderboard-rank {
+
+      color: #167eb5;
+    }
+
+
+    .mini-emoji {
+
+      width: 32px;
+
+      height: 32px;
+
+      border-radius: 10px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #ffffff;
+
+      border: 1px solid #e5eef4;
+
+      font-size: 17px;
+
+      flex-shrink: 0;
+    }
+
+
+    .mini-emoji.you-label {
+
+      width: auto;
+
+      min-width: 32px;
+
+      padding: 0 7px;
+
+      background: #238bc4;
+
+      color: #ffffff;
+
+      border-color: #238bc4;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 0.03em;
+    }
+
+
+    .leaderboard-user {
+
+      min-width: 0;
+    }
+
+
+    .leaderboard-email {
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: #385a70;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+
+    .leaderboard-row.you .leaderboard-email {
+
+      color: #126e9e;
+    }
+
+
+    .leaderboard-points {
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      color: #6c8596;
+
+      white-space: nowrap;
+    }
+
+
+    .leaderboard-row.you .leaderboard-points {
+
+      color: #167db3;
+    }
+
+
+    .leaderboard-separator {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      margin: 6px 5px;
+
+      color: #b3c2cc;
+
+      font-size: 10px;
+
+      font-weight: 700;
+    }
+
+
+    .leaderboard-separator::before,
+    .leaderboard-separator::after {
+
+      content: "";
+
+      height: 1px;
+
+      flex: 1;
+
+      background: #e3edf3;
+    }
+
+
+    .leaderboard-loading {
+
+      padding: 35px 10px;
+
+      text-align: center;
+
+      color: #8aa0ae;
+
+      font-size: 13px;
+    }
+
+
+    .leaderboard-error {
+
+      padding: 25px 10px;
+
+      text-align: center;
+
+      color: #c86c67;
+
+      font-size: 13px;
+
+      font-weight: 600;
+    }
+
+
+    /* =================================================
+       FOOTER
+       ================================================= */
+
+    .footer {
+
+      text-align: center;
+
+      margin-top: 25px;
+
+      color: #a0b0bb;
+
+      font-size: 11px;
+    }
+
+
+    /* =================================================
+       RESPONSIVE
+       ================================================= */
+
+    @media (max-width: 850px) {
+
+      .dashboard {
+
+        padding: 20px;
+      }
+
+
+      .dashboard-grid {
+
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .dashboard {
+
+        padding: 14px;
+      }
+
+
+      .top-header {
+
+        align-items: flex-start;
+      }
+
+
+      .brand-title {
+
+        font-size: 19px;
+      }
+
+
+      .brand-icon {
+
+        width: 46px;
+
+        height: 46px;
+
+        font-size: 23px;
+      }
+
+
+      .logout-button {
+
+        padding: 8px 11px;
+
+        font-size: 11px;
+      }
+
+
+      .score-card,
+      .leaderboard-card {
+
+        padding: 19px;
+      }
+
+
+      .score-main {
+
+        grid-template-columns: 1fr;
+      }
+
+
+      .leaderboard-row {
+
+        grid-template-columns:
+          34px
+          34px
+          minmax(0, 1fr)
+          auto;
+
+        gap: 7px;
+
+        padding: 8px;
+      }
+
+
+      .leaderboard-email {
+
+        font-size: 11px;
+      }
+
+
+      .leaderboard-points {
+
+        font-size: 11px;
+      }
+
+    }
+
+
+    @media (max-width: 420px) {
+
+      .rank-box {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+
+      .leaderboard-row {
+
+        grid-template-columns:
+          30px
+          30px
+          minmax(0, 1fr)
+          auto;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<iframe id="loginTransport" name="loginTransport" title="Login transport" style="display:none"></iframe>
+<div class="app">
+
+
+  <!-- =================================================
+       LOGIN SCREEN
+       ================================================= -->
+
+  <section
+    id="loginScreen"
+    class="login-screen"
+  >
+
+    <div class="login-card">
+
+      <div class="login-icon">
+        ❄️
+      </div>
+
+
+      <h1 class="login-title">
+        Winter Contest 2026
+      </h1>
+
+
+      <p class="login-subtitle">
+        Enter your email and private passcode to view your
+        combined contest score and leaderboard rank.
+      </p>
+
+
+      <label class="input-label" for="emailInput">Email</label>
+      <input id="emailInput" class="login-input" type="email" placeholder="name@example.com" autocomplete="username" spellcheck="false">
+
+      <label class="input-label" for="passcodeInput">Passcode</label>
+      <input id="passcodeInput" class="login-input" type="password" placeholder="Enter your private passcode" autocomplete="current-password">
+
+      <button
+        id="loginButton"
+        class="login-button"
+        type="button"
+        onclick="login()"
+      >
+        Log In
+      </button>
+
+
+      <div
+        id="loginError"
+        class="login-error"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================================
+       DASHBOARD
+       ================================================= -->
+
+  <section
+    id="dashboard"
+    class="dashboard"
+  >
+
+    <div class="dashboard-container">
+
+
+      <!-- HEADER -->
+
+      <header class="top-header">
+
+        <div class="brand">
+
+          <div class="brand-icon">
+            ❄️
+          </div>
+
+
+          <div>
+
+            <div class="brand-title">
+              Winter Contest 2026
+            </div>
+
+            <div class="brand-subtitle">
+              Contest Leaderboard
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="logout-button"
+          type="button"
+          onclick="logout()"
+        >
+          Logout
+        </button>
+
+      </header>
+
+
+      <!-- MAIN GRID -->
+
+      <main class="dashboard-grid">
+
+
+        <!-- =========================================
+             PERSONAL SCORE
+             ========================================= -->
+
+        <section class="card score-card">
+
+          <div class="section-label">
+            My Performance
+          </div>
+
+
+          <h2
+            id="scoreTitle"
+            class="score-title"
+          >
+            Your Score
+          </h2>
+
+
+          <div
+            id="scoreEmail"
+            class="score-email"
+          >
+            Loading...
+          </div>
+
+
+          <div class="score-main">
+
+
+            <!-- POINTS -->
+
+            <div class="score-box">
+
+              <div class="score-box-label">
+                Total Points
+              </div>
+
+
+              <div>
+
+                <span
+                  id="pointsValue"
+                  class="score-number"
+                >
+                  —
+                </span>
+
+                <span class="score-unit">
+                  pts
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- UNITS -->
+
+            <div class="score-box">
+
+              <div class="score-box-label">
+                Units
+              </div>
+
+
+              <div>
+
+                <span
+                  id="unitsValue"
+                  class="score-number"
+                >
+                  —
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- RANK -->
+
+          <div class="rank-box">
+
+            <div>
+
+              <div class="rank-left-label">
+                Current Rank
+              </div>
+
+
+              <div
+                id="rankValue"
+                class="rank-value"
+              >
+                —
+              </div>
+
+            </div>
+
+
+            <div
+              id="levelBadge"
+              class="level-badge"
+            >
+              Loading
+            </div>
+
+          </div>
+
+
+          <!-- PROGRESS -->
+
+          <div class="progress-section">
+
+            <div class="progress-header">
+
+              <div class="progress-title">
+                Progress to next level
+              </div>
+
+
+              <div
+                id="progressPoints"
+                class="progress-points"
+              >
+                —
+              </div>
+
+            </div>
+
+
+            <div class="progress-track">
+
+              <div
+                id="progressFill"
+                class="progress-fill"
+              ></div>
+
+            </div>
+
+
+            <div
+              id="nextLevelText"
+              class="next-level"
+            >
+              —
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- =========================================
+             LEADERBOARD
+             ========================================= -->
+
+        <section class="card leaderboard-card">
+
+          <div class="leaderboard-header">
+
+            <div>
+
+              <h2 class="leaderboard-title">
+                Leaderboard
+              </h2>
+
+
+              <div class="leaderboard-subtitle">
+                Top 10 + your position
+              </div>
+
+            </div>
+
+
+            <button
+              id="refreshButton"
+              class="refresh-button"
+              type="button"
+              onclick="refreshLeaderboard()"
+              title="Refresh leaderboard"
+            >
+              ↻
+            </button>
+
+          </div>
+
+
+          <div
+            id="leaderboardList"
+            class="leaderboard-list"
+          >
+
+            <div class="leaderboard-loading">
+              Loading leaderboard...
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+
+      <div class="footer">
+        Winter Contest 2026
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbx_qxUJv2jRQZ8SA9u8tYACaA-gtnTlK7TAG0y1SDLxWGwnpngatP3ajcYpo2bg9Jz_vg/exec";
+let currentUserId = "";
+let currentUserRank = 0;
+let currentUserData = null;
+let leaderboardData = [];
+const TOP_COUNT = 10;
+const LEVELS = [
+ {name:"Beginner",min:0},{name:"Rookie",min:100},{name:"Rising Star",min:250},
+ {name:"Achiever",min:500},{name:"Expert",min:1000},{name:"Master",min:2000},{name:"Champion",min:5000}
+];
+const EMOJIS=["🏆","🥇","🥈","🥉","🔥","⚡","🚀","❄️","⭐","💎"];
+function getLevel(points){let x=LEVELS[0];for(const l of LEVELS){if(points>=l.min)x=l;else break;}return x;}
+function getNextLevel(points){return LEVELS.find(l=>points<l.min)||null;}
+function postLogin(email,passcode){
+ return new Promise((resolve,reject)=>{
+   const frame=document.getElementById('loginTransport');
+   const nonce='wc_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+   let done=false;
+   const timer=setTimeout(()=>finish(null),20000);
+   function finish(data){if(done)return;done=true;clearTimeout(timer);window.removeEventListener('message',onMessage);if(data)resolve(data);else reject(new Error('Unable to connect. Please try again.'));}
+   function onMessage(event){if(event.source!==frame.contentWindow||!event.data||event.data.nonce!==nonce)return;finish(event.data);}
+   window.addEventListener('message',onMessage);
+   const form=document.createElement('form');form.method='POST';form.action=API_URL;form.target='loginTransport';form.style.display='none';
+   [['action','login'],['email',email],['passcode',passcode],['nonce',nonce]].forEach(([k,v])=>{const i=document.createElement('input');i.type='hidden';i.name=k;i.value=v;form.appendChild(i);});
+   document.body.appendChild(form);form.submit();form.remove();
+ });
+}
+async function login(){
+ const emailEl=document.getElementById('emailInput'), passEl=document.getElementById('passcodeInput');
+ const button=document.getElementById('loginButton'), error=document.getElementById('loginError');
+ const email=String(emailEl.value||'').trim().toLowerCase(), passcode=String(passEl.value||'').trim();
+ error.textContent='';
+ if(!email||!passcode){error.textContent='Please enter both email and passcode.';(!email?emailEl:passEl).focus();return;}
+ button.disabled=true;button.textContent='Checking...';
+ try{
+   const result=await postLogin(email,passcode);
+   if(!result||!result.ok)throw new Error(result&&result.error?result.error:'Incorrect email or passcode.');
+   currentUserData=result.profile;currentUserRank=Number(result.profile.rank||0);currentUserId=email;
+   renderPersonalScore(result.profile);
+   await loadLeaderboard(currentUserId,currentUserRank);
+   document.getElementById('loginScreen').style.display='none';
+   document.getElementById('dashboard').style.display='block';
+ }catch(err){console.error(err);currentUserId='';currentUserRank=0;currentUserData=null;error.textContent=err.message||'Unable to log in.';}
+ finally{button.disabled=false;button.textContent='Log In';}
+}
+document.getElementById('emailInput').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('passcodeInput').focus();});
+document.getElementById('passcodeInput').addEventListener('keydown',e=>{if(e.key==='Enter')login();});
+function renderPersonalScore(data){
+ const points=Number(data.points||0),units=Number(data.units||0),rank=Number(data.rank||0),email=String(data.email||'');
+ const level=getLevel(points),next=getNextLevel(points);
+ document.getElementById('scoreEmail').textContent=email;
+ document.getElementById('pointsValue').textContent=formatNumber(points);
+ document.getElementById('unitsValue').textContent=formatNumber(units);
+ document.getElementById('rankValue').textContent='#'+rank;
+ document.getElementById('levelBadge').textContent=level.name;
+ let progress=100;
+ if(next){const range=next.min-level.min;progress=range>0?((points-level.min)/range)*100:0;progress=Math.max(0,Math.min(100,progress));
+ document.getElementById('progressPoints').textContent=formatNumber(points)+' / '+formatNumber(next.min);
+ document.getElementById('nextLevelText').textContent='Next: '+next.name+' at '+formatNumber(next.min)+' points';
+ }else{document.getElementById('progressPoints').textContent='MAX LEVEL';document.getElementById('nextLevelText').textContent='You have reached the highest level.';}
+ document.getElementById('progressFill').style.width=progress+'%';
+}
+function loadLeaderboard(userId,userRank){return new Promise((resolve,reject)=>{
+ const callback='winterLeaderboard_'+Date.now()+'_'+Math.floor(Math.random()*100000),script=document.createElement('script');let finished=false;
+ function cleanup(){if(script.parentNode)script.parentNode.removeChild(script);try{delete window[callback];}catch(e){window[callback]=undefined;}}
+ function success(data){if(finished)return;finished=true;cleanup();if(!data||data.error){reject(new Error(data&&data.error||'Leaderboard API error.'));return;}
+ leaderboardData=Array.isArray(data.leaderboard)?data.leaderboard:[];renderLeaderboard(leaderboardData,userId,userRank);resolve(leaderboardData);}
+ function fail(){if(finished)return;finished=true;cleanup();reject(new Error('Unable to load leaderboard.'));}
+ window[callback]=success;script.onerror=fail;script.src=API_URL+'?mode=leaderboard&callback='+encodeURIComponent(callback)+'&_='+Date.now();document.body.appendChild(script);setTimeout(()=>{if(!finished)fail();},15000);
+ });}
+function renderLeaderboard(rows,userId,userRank){
+ const container=document.getElementById('leaderboardList');if(!Array.isArray(rows)||!rows.length){container.innerHTML='<div class="leaderboard-error">No leaderboard data available.</div>';return;}
+ const normalized=rows.map(r=>({userId:String(r.maskedEmail||r.email||''),email:String(r.maskedEmail||r.email||'Participant'),units:Number(r.units||0),points:Number(r.points||0),rank:Number(r.rank||0)})).filter(r=>r.rank>0).sort((a,b)=>a.rank-b.rank);
+ const rank=Number(userRank||0), ownEmail=String(currentUserData&&currentUserData.email||'').toLowerCase();
+ let display=normalized.filter(r=>r.rank<=TOP_COUNT);
+ if(ownEmail && !display.some(r=>r.email.toLowerCase()===ownEmail)){const own=normalized.find(r=>r.email.toLowerCase()===ownEmail);if(own)display.push(own);}
+ display.sort((a,b)=>a.rank-b.rank);
+ let out='',previous=null;display.forEach((r,i)=>{if(rank>TOP_COUNT&&previous!==null&&previous<=TOP_COUNT&&r.rank>TOP_COUNT)out+='<div class="leaderboard-separator">YOUR POSITION</div>';const you=!!ownEmail&&r.email.toLowerCase()===ownEmail;out+=createLeaderboardRow(r,you,i);previous=r.rank;});container.innerHTML=out||'<div class="leaderboard-error">No leaderboard data available.</div>';
+}
+function createLeaderboardRow(row,isYou,index){const rank=Number(row.rank||0),emoji=EMOJIS[Math.min(index,EMOJIS.length-1)]||'⭐';const badge=isYou?'<div class="mini-emoji you-label">YOU</div>':'<div class="mini-emoji">'+emoji+'</div>';return '<div class="leaderboard-row'+(isYou?' you':'')+'"><div class="leaderboard-rank">#'+rank+'</div>'+badge+'<div class="leaderboard-user"><div class="leaderboard-email" title="'+escapeHtml(row.email)+'">'+escapeHtml(row.email)+'</div></div><div class="leaderboard-points">'+formatNumber(row.points)+' pts</div></div>';}
+async function refreshLeaderboard(){const button=document.getElementById('refreshButton');if(!currentUserId)return;const old=button.textContent;button.disabled=true;button.textContent='…';try{await loadLeaderboard(currentUserId,currentUserRank);}catch(e){document.getElementById('leaderboardList').innerHTML='<div class="leaderboard-error">Unable to refresh leaderboard.</div>';}finally{button.disabled=false;button.textContent=old;}}
+function logout(){currentUserId='';currentUserRank=0;currentUserData=null;leaderboardData=[];document.getElementById('dashboard').style.display='none';document.getElementById('loginScreen').style.display='flex';document.getElementById('emailInput').value='';document.getElementById('passcodeInput').value='';document.getElementById('loginError').textContent='';document.getElementById('leaderboardList').innerHTML='<div class="leaderboard-loading">Loading leaderboard...</div>';document.getElementById('pointsValue').textContent='—';document.getElementById('unitsValue').textContent='—';document.getElementById('rankValue').textContent='—';document.getElementById('progressFill').style.width='0%';document.getElementById('levelBadge').textContent='Loading';}
+function formatNumber(value){const n=Number(value||0);return Number.isFinite(n)?n.toLocaleString('en-US'):'0';}
+function escapeHtml(value){return String(value||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
+</script>
+
+</body>
+</html>
