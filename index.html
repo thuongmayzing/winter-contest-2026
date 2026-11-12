@@ -285,7 +285,7 @@
     background: var(--gold-main);
   }
 
-  /* Split Metrics Grid (Rank Centerpiece + Points/Units) */
+  /* Split Metrics Grid */
   .metrics-split {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -365,7 +365,7 @@
     margin-left: 3px;
   }
 
-  /* Milestone Box (No Prize Mention) */
+  /* Milestone Box */
   .milestone-box {
     padding: 18px 20px;
     border-radius: 18px;
@@ -521,7 +521,7 @@
     white-space: nowrap;
   }
 
-  /* LEADERBOARD CARD (Top 10 Clean - No Emojis, No Points, No Bottom Sticky Bar) */
+  /* LEADERBOARD CARD */
   .leaderboard-card { padding: 24px; }
   .leaderboard-header {
     display: flex;
@@ -628,7 +628,7 @@
     gap: 8px;
   }
 
-  /* ================= RESPONSIVE (TABLET & MOBILE) ================= */
+  /* ================= RESPONSIVE ================= */
   @media (max-width: 920px) {
     .dashboard-grid {
       grid-template-columns: 1fr;
@@ -730,7 +730,7 @@
         </svg>
       </div>
       <h1 class="login-title">Christmas Contest 2026</h1>
-      <p class="login-subtitle">Enter your email and private passcode to view your combined contest score and leaderboard rank.</p>
+      <p class="login-subtitle">Sign in with your registered email and passcode to track your contest ranking.</p>
       <label class="input-label" for="emailInput">Email</label>
       <input id="emailInput" class="login-input" type="email" placeholder="name@example.com" autocomplete="username" spellcheck="false">
       <label class="input-label" for="passcodeInput">Passcode</label>
@@ -747,7 +747,6 @@
         <button class="logout-button" type="button" onclick="logout()">Logout</button>
         <div class="brand-kicker">Mayzing</div>
         <div class="title-row">
-          <!-- Left Xmas Tree (Deep Pine Green + Minimal Small Gold Ornaments) -->
           <svg class="xmas-tree-svg" viewBox="0 0 44 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M22 2L23.8 6.2L28.4 6.6L24.9 9.6L26 14.1L22 11.7L18 14.1L19.1 9.6L15.6 6.6L20.2 6.2L22 2Z" fill="#E5C158"/>
             <path d="M22 11L33 24H27.5L36.5 35H29.5L39 45H5L14.5 35H7.5L16.5 24H11L22 11Z" fill="#0E422E"/>
@@ -760,7 +759,6 @@
 
           <h1 class="brand-title">Christmas Contest 2026</h1>
 
-          <!-- Right Xmas Tree -->
           <svg class="xmas-tree-svg" viewBox="0 0 44 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M22 2L23.8 6.2L28.4 6.6L24.9 9.6L26 14.1L22 11.7L18 14.1L19.1 9.6L15.6 6.6L20.2 6.2L22 2Z" fill="#E5C158"/>
             <path d="M22 11L33 24H27.5L36.5 35H29.5L39 45H5L14.5 35H7.5L16.5 24H11L22 11Z" fill="#0E422E"/>
@@ -775,7 +773,7 @@
       </header>
 
       <main class="dashboard-grid">
-        <!-- LEFT COLUMN: MY PERFORMANCE + NEARBY RIVALS -->
+        <!-- LEFT COLUMN -->
         <div class="left-column">
           <section class="card score-card">
             <div class="perf-header">
@@ -790,14 +788,12 @@
             </div>
 
             <div class="metrics-split">
-              <!-- Centerpiece Current Rank -->
               <div class="rank-hero-box">
                 <div class="rank-hero-label">Current Rank</div>
                 <div id="rankValue" class="rank-value">—</div>
                 <div id="rankGapTag" class="rank-gap-tag">Calculating gap...</div>
               </div>
 
-              <!-- Points & Units -->
               <div class="sub-metrics-stack">
                 <div class="score-box">
                   <div class="score-box-label">Total Points</div>
@@ -810,7 +806,6 @@
               </div>
             </div>
 
-            <!-- Next Milestone (No Prize Mention, With % Progress & Points Left) -->
             <div class="milestone-box">
               <div class="milestone-top">
                 <div id="nextMilestoneTitle" class="milestone-title">Next milestone: — points</div>
@@ -826,7 +821,6 @@
             </div>
           </section>
 
-          <!-- NEARBY RIVALS (1-2 Before & After YOU) -->
           <section class="card rivals-card">
             <div class="rivals-header">
               <h3 class="rivals-title">Nearby Rivals</h3>
@@ -838,7 +832,7 @@
           </section>
         </div>
 
-        <!-- RIGHT COLUMN: TOP 10 LEADERBOARD -->
+        <!-- RIGHT COLUMN -->
         <section class="card leaderboard-card">
           <div class="leaderboard-header">
             <div>
@@ -867,8 +861,6 @@ let currentUserRank = 0;
 let currentUserData = null;
 let leaderboardData = [];
 const TOP_COUNT = 10;
-
-// Milestone point thresholds (strictly points only, no prize labels)
 const MILESTONES = [250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 125000];
 
 function getNextMilestone(points) {
@@ -885,7 +877,6 @@ function getPreviousMilestone(points) {
 }
 
 function updateContestCountdown() {
-  // Contest ends Dec 31, 2026 23:59:59 GMT
   const endDate = new Date("2026-12-31T23:59:59Z");
   const now = new Date();
   const diffMs = endDate - now;
@@ -1106,7 +1097,6 @@ function renderLeaderboardAndRivals(rows, userId, userRank) {
     rank: Number(currentUserData && currentUserData.rank || userRank || 0)
   };
 
-  // Update dynamic gap badge in Rank Hero Box
   if (userIndex > 0) {
     const personAbove = normalized[userIndex - 1];
     const diffAbove = Math.max(0, personAbove.points - userObj.points);
@@ -1116,7 +1106,6 @@ function renderLeaderboardAndRivals(rows, userId, userRank) {
     document.getElementById('rankGapTag').textContent = 'Leading the Contest';
   }
 
-  // 1. Render Nearby Rivals (up to 2 ahead, YOU, and up to 1-2 behind)
   if (userIndex >= 0) {
     const startIdx = Math.max(0, userIndex - 2);
     const endIdx = Math.min(normalized.length - 1, userIndex + 1);
@@ -1156,7 +1145,6 @@ function renderLeaderboardAndRivals(rows, userId, userRank) {
       '</div>';
   }
 
-  // 2. Render Top 10 Leaderboard (No emojis, no points, no sticky bottom position bar)
   const top10 = normalized.filter(r => r.rank <= TOP_COUNT);
   let lbHtml = '';
   top10.forEach(r => {
