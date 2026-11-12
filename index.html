@@ -3,110 +3,861 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Winter Contest 2026</title>
+<title>Mayzing — Christmas Contest 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;min-height:100%}
-body{font-family:Inter,sans-serif;background:linear-gradient(135deg,#f7fbff 0%,#eef7ff 50%,#fff 100%);color:#17324d;min-height:100vh}
-button,input{font-family:inherit}.app{min-height:100vh;width:100%}
-.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-.login-card{width:100%;max-width:430px;background:#fff;border-radius:24px;padding:36px 30px;box-shadow:0 20px 60px rgba(27,80,120,.12);border:1px solid #e7f0f7;text-align:center}
-.login-icon{width:76px;height:76px;margin:0 auto 20px;border-radius:22px;display:flex;align-items:center;justify-content:center;background:#eaf7ff;font-size:38px}
-.login-title,.brand-title,.score-title,.rank-value,.score-number,.leaderboard-title{font-family:Montserrat,sans-serif}
-.login-title{font-size:28px;font-weight:800;color:#123c5a;margin-bottom:8px}
-.login-subtitle{color:#7890a2;font-size:14px;line-height:1.6;margin-bottom:26px}
-.input-label{display:block;text-align:left;margin-bottom:8px;font-size:13px;font-weight:700;color:#47667e}
-.login-input{width:100%;height:52px;border-radius:14px;border:1px solid #d8e7f1;background:#fafdff;padding:0 16px;outline:none;color:#17324d;font-size:14px;margin-bottom:14px}
-.login-input:focus{border-color:#51a9df;box-shadow:0 0 0 4px rgba(81,169,223,.12)}
-.login-button{width:100%;height:52px;border:0;border-radius:14px;background:#238bc4;color:#fff;font-size:15px;font-weight:800;cursor:pointer}
-.login-button:hover{background:#1877aa}.login-button:disabled{opacity:.65;cursor:wait}
-.login-error{min-height:20px;margin-top:14px;font-size:13px;color:#d9534f;font-weight:600}
-.dashboard{display:none;min-height:100vh;padding:30px}.dashboard-container{max-width:1180px;margin:0 auto}
-.top-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:26px}
-.brand{display:flex;align-items:center;gap:14px}.brand-icon{width:54px;height:54px;border-radius:16px;background:#e8f6ff;display:flex;align-items:center;justify-content:center;font-size:28px}
-.brand-title{font-size:24px;font-weight:800;color:#123c5a}.brand-subtitle{font-size:12px;color:#8297a8;margin-top:3px}
-.logout-button{border:1px solid #dce9f1;background:#fff;color:#607b8e;padding:10px 16px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer}
-.dashboard-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:22px;align-items:start}
-.card{background:#fff;border-radius:22px;border:1px solid #e5eef5;box-shadow:0 12px 35px rgba(27,80,120,.07)}
-.score-card{padding:28px}.section-label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#7d96a8;margin-bottom:10px}
-.score-title{font-size:25px;font-weight:800;color:#173f5f;margin-bottom:5px}.score-email{font-size:13px;color:#8aa0b0;margin-bottom:28px;word-break:break-word}
-.score-main{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}.score-box{padding:20px;border-radius:18px;background:#f7fbfe;border:1px solid #e7f1f7}
-.score-box-label{font-size:12px;color:#849aaa;font-weight:600;margin-bottom:8px}.score-number{font-size:32px;font-weight:800;color:#1e80b7}.score-unit{font-size:12px;color:#7891a2;margin-left:3px}
-.rank-box{margin-top:4px;padding:22px;border-radius:18px;background:linear-gradient(135deg,#eaf7ff,#f6fbff);border:1px solid #dceff9;display:flex;align-items:center;justify-content:space-between;gap:15px}
-.rank-left-label{font-size:12px;color:#7790a1;font-weight:700;margin-bottom:5px}.rank-value{font-size:36px;font-weight:800;color:#147db6}
-.level-badge{padding:10px 15px;border-radius:12px;background:#fff;border:1px solid #d9ebf5;color:#29779e;font-size:13px;font-weight:800;white-space:nowrap}
-.progress-section{margin-top:22px}.progress-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
-.progress-title,.progress-points{font-size:12px;color:#8097a8;font-weight:700}.progress-track{width:100%;height:9px;border-radius:99px;background:#eaf2f7;overflow:hidden}
-.progress-fill{height:100%;width:0;border-radius:99px;background:#3da0d2;transition:width .6s ease}.next-level{margin-top:9px;font-size:12px;color:#8aa0ae}
-.leaderboard-card{padding:24px}.leaderboard-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}
-.leaderboard-title{font-size:21px;font-weight:800;color:#173f5f}.leaderboard-subtitle{font-size:12px;color:#8aa0ae;margin-top:4px}
-.refresh-button{width:38px;height:38px;border-radius:11px;border:1px solid #dfebf2;background:#fff;color:#4784a4;cursor:pointer;font-size:16px}
-.leaderboard-list{display:flex;flex-direction:column;gap:7px}.leaderboard-row{display:grid;grid-template-columns:40px 38px minmax(0,1fr) auto;align-items:center;gap:10px;min-height:57px;padding:8px 12px;border-radius:15px;background:#f9fcfe;border:1px solid transparent}
-.leaderboard-row.you{background:linear-gradient(135deg,#e9f7ff,#f5fbff);border-color:#a9daf2;box-shadow:0 5px 18px rgba(49,148,200,.1)}
-.leaderboard-rank{font-family:Montserrat,sans-serif;font-size:13px;font-weight:800;color:#7790a1;text-align:center}
-.mini-emoji{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e5eef4;font-size:17px;flex-shrink:0}
-.mini-emoji.you-label{width:auto;min-width:32px;padding:0 7px;background:#238bc4;color:#fff;border-color:#238bc4;font-size:9px;font-weight:900}
-.leaderboard-user{min-width:0}.leaderboard-email{font-size:12px;font-weight:700;color:#385a70;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.leaderboard-points{font-size:12px;font-weight:800;color:#6c8596;white-space:nowrap}
-.leaderboard-separator{display:flex;align-items:center;gap:9px;margin:6px 5px;color:#b3c2cc;font-size:10px;font-weight:700}
-.leaderboard-separator:before,.leaderboard-separator:after{content:"";height:1px;flex:1;background:#e3edf3}
-.leaderboard-loading,.leaderboard-error{padding:25px 10px;text-align:center;font-size:13px}.leaderboard-loading{color:#8aa0ae}.leaderboard-error{color:#c86c67;font-weight:600}
-.footer{text-align:center;margin-top:25px;color:#a0b0bb;font-size:11px}
-@media(max-width:850px){.dashboard{padding:20px}.dashboard-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.dashboard{padding:14px}.top-header{align-items:flex-start}.brand-title{font-size:19px}.brand-icon{width:46px;height:46px;font-size:23px}.logout-button{padding:8px 11px;font-size:11px}.score-card,.leaderboard-card{padding:19px}.score-main{grid-template-columns:1fr}.leaderboard-row{grid-template-columns:34px 34px minmax(0,1fr) auto;gap:7px;padding:8px}.leaderboard-email,.leaderboard-points{font-size:11px}}
-@media(max-width:420px){.rank-box{align-items:flex-start;flex-direction:column}.leaderboard-row{grid-template-columns:30px 30px minmax(0,1fr) auto}}
+  :root {
+    --bg-page: #EEF2EC;
+    --bg-card: #FFFFFF;
+    --bg-subtle: #F6F8F5;
+    --bg-gold-soft: #FDF9EC;
+    --pine-dark: #0E422E;
+    --pine-main: #14533C;
+    --pine-light: #E4EDE8;
+    --gold-main: #E5C158;
+    --gold-border: #E8D595;
+    --gold-text: #8F6914;
+    --text-primary: #0E422E;
+    --text-secondary: #4A665A;
+    --text-muted: #768D82;
+    --border-card: #DCE4DC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; min-height: 100%; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  button, input { font-family: inherit; }
+  .app { min-height: 100vh; width: 100%; display: flex; flex-direction: column; }
+
+  /* ================= LOGIN SCREEN ================= */
+  .login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .login-card {
+    width: 100%;
+    max-width: 430px;
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 36px 28px;
+    box-shadow: 0 20px 50px rgba(14, 66, 46, 0.08);
+    border: 1px solid var(--border-card);
+    text-align: center;
+  }
+  .login-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: var(--pine-main);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .login-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--pine-light);
+    border: 1px solid #CFE0D6;
+  }
+  .login-title, .brand-title, .section-heading, .rank-value, .score-number, .leaderboard-title {
+    font-family: 'Montserrat', sans-serif;
+  }
+  .login-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--pine-dark);
+    margin-bottom: 8px;
+  }
+  .login-subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .input-label {
+    display: block;
+    text-align: left;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pine-dark);
+  }
+  .login-input {
+    width: 100%;
+    height: 50px;
+    border-radius: 14px;
+    border: 1px solid #CBD8CE;
+    background: var(--bg-subtle);
+    padding: 0 16px;
+    outline: none;
+    color: var(--pine-dark);
+    font-size: 14px;
+    margin-bottom: 14px;
+    transition: all 0.2s ease;
+  }
+  .login-input:focus {
+    background: #fff;
+    border-color: var(--pine-main);
+    box-shadow: 0 0 0 4px rgba(20, 83, 60, 0.12);
+  }
+  .login-button {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    border-radius: 14px;
+    background: var(--pine-dark);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  .login-button:hover { background: var(--pine-main); }
+  .login-button:active { transform: scale(0.99); }
+  .login-button:disabled { opacity: 0.65; cursor: wait; }
+  .login-error {
+    min-height: 20px;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #C53030;
+    font-weight: 600;
+  }
+
+  /* ================= DASHBOARD ================= */
+  .dashboard {
+    display: none;
+    min-height: 100vh;
+    padding: 28px 24px 36px;
+  }
+  .dashboard-container {
+    max-width: 1160px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  /* Centered Festive Header */
+  .top-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 110px 26px;
+  }
+  .brand-kicker {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.26em;
+    color: var(--pine-main);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .brand-title {
+    font-size: 34px;
+    font-weight: 900;
+    color: var(--pine-dark);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .brand-dates {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--border-card);
+    padding: 5px 14px;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .xmas-tree-svg {
+    width: 44px;
+    height: 52px;
+    flex-shrink: 0;
+  }
+  .logout-button {
+    position: absolute;
+    top: 12px;
+    right: 0;
+    border: 1px solid #CBD8CE;
+    background: #fff;
+    color: var(--pine-dark);
+    padding: 9px 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .logout-button:hover {
+    background: var(--pine-light);
+    border-color: var(--pine-main);
+  }
+
+  /* Main 2-Column Layout */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(350px, 0.88fr);
+    gap: 22px;
+    align-items: start;
+  }
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .card {
+    background: var(--bg-card);
+    border-radius: 22px;
+    border: 1px solid var(--border-card);
+    box-shadow: 0 12px 32px rgba(14, 66, 46, 0.05);
+  }
+
+  /* MY PERFORMANCE CARD */
+  .score-card { padding: 26px; }
+  .perf-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #E8EFE9;
+    margin-bottom: 20px;
+  }
+  .section-heading {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--pine-dark);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .score-email {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 4px;
+    word-break: break-all;
+  }
+  .countdown-pill {
+    background: var(--pine-dark);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  .countdown-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gold-main);
+  }
+
+  /* Split Metrics Grid (Rank Centerpiece + Points/Units) */
+  .metrics-split {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .rank-hero-box {
+    padding: 20px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, var(--pine-dark) 0%, var(--pine-main) 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 156px;
+  }
+  .rank-hero-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B6D3C6;
+  }
+  .rank-value {
+    font-size: 46px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.05;
+    margin: 8px 0;
+  }
+  .rank-gap-tag {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    background: rgba(229, 193, 88, 0.2);
+    border: 1px solid rgba(229, 193, 88, 0.55);
+    color: #FDE68A;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 99px;
+  }
+
+  .sub-metrics-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .score-box {
+    flex: 1;
+    padding: 15px 18px;
+    border-radius: 16px;
+    background: var(--bg-subtle);
+    border: 1px solid #E3ECE5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .score-box-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .score-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--pine-dark);
+    line-height: 1.1;
+  }
+  .score-unit {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-left: 3px;
+  }
+
+  /* Milestone Box (No Prize Mention) */
+  .milestone-box {
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: var(--bg-gold-soft);
+    border: 1px solid var(--gold-border);
+  }
+  .milestone-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .milestone-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--pine-dark);
+  }
+  .milestone-ratio {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+  .milestone-ratio strong {
+    color: var(--pine-dark);
+    font-weight: 800;
+  }
+  .progress-track {
+    width: 100%;
+    height: 11px;
+    border-radius: 99px;
+    background: #EAE2C6;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--pine-main) 0%, #237A57 100%);
+    transition: width 0.6s ease;
+  }
+  .milestone-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .milestone-percent {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+  .unlock-pill {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--gold-text);
+    background: #F9EBBF;
+    padding: 4px 11px;
+    border-radius: 99px;
+  }
+
+  /* NEARBY RIVALS CARD */
+  .rivals-card { padding: 22px 26px; }
+  .rivals-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .rivals-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--pine-dark);
+  }
+  .rivals-subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .rivals-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rival-row {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: 14px;
+    background: var(--bg-subtle);
+    border: 1px solid #E5ECE6;
+  }
+  .rival-row.is-you {
+    background: var(--pine-light);
+    border: 1.5px solid var(--pine-main);
+  }
+  .rival-rank {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text-secondary);
+  }
+  .rival-row.is-you .rival-rank { color: var(--pine-dark); }
+  .rival-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  .rival-email {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pine-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .you-badge {
+    background: var(--pine-dark);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 99px;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .gap-pill {
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  .gap-ahead {
+    background: #E3F1E8;
+    color: #14533C;
+  }
+  .gap-behind {
+    background: #FDECEC;
+    color: #B83232;
+  }
+  .gap-you {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--pine-main);
+    white-space: nowrap;
+  }
+
+  /* LEADERBOARD CARD (Top 10 Clean - No Emojis, No Points, No Bottom Sticky Bar) */
+  .leaderboard-card { padding: 24px; }
+  .leaderboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .leaderboard-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--pine-dark);
+  }
+  .leaderboard-subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+  .refresh-button {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    border: 1px solid #CBD8CE;
+    background: #fff;
+    color: var(--pine-dark);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  .refresh-button:hover {
+    background: var(--pine-light);
+    border-color: var(--pine-main);
+  }
+  .leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .leaderboard-row {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    min-height: 50px;
+    padding: 9px 14px;
+    border-radius: 14px;
+    background: var(--bg-subtle);
+    border: 1px solid #E5ECE6;
+  }
+  .leaderboard-row.rank-1 {
+    background: var(--bg-gold-soft);
+    border-color: var(--gold-border);
+  }
+  .leaderboard-row.you {
+    background: var(--pine-light);
+    border: 1.5px solid var(--pine-main);
+  }
+  .rank-pill {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 9px;
+    background: var(--pine-dark);
+    color: #fff;
+  }
+  .leaderboard-row.rank-1 .rank-pill {
+    background: var(--gold-main);
+    color: var(--pine-dark);
+  }
+  .leaderboard-email {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pine-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .leaderboard-loading, .leaderboard-error {
+    padding: 28px 12px;
+    text-align: center;
+    font-size: 13px;
+  }
+  .leaderboard-loading { color: var(--text-muted); }
+  .leaderboard-error { color: #C53030; font-weight: 600; }
+
+  /* Confidential Footer */
+  .footer-bar {
+    margin-top: 28px;
+    background: var(--pine-dark);
+    color: #DCE8E1;
+    padding: 12px 18px;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* ================= RESPONSIVE (TABLET & MOBILE) ================= */
+  @media (max-width: 920px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+    .top-header {
+      padding: 46px 10px 22px;
+    }
+    .logout-button {
+      top: 0;
+      right: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .dashboard {
+      padding: 14px 14px 28px;
+    }
+    .brand-title {
+      font-size: 23px;
+    }
+    .title-row {
+      gap: 8px;
+    }
+    .xmas-tree-svg {
+      width: 32px;
+      height: 38px;
+    }
+    .brand-dates {
+      font-size: 12px;
+      padding: 4px 12px;
+    }
+    .score-card, .rivals-card, .leaderboard-card {
+      padding: 18px 16px;
+      border-radius: 18px;
+    }
+    .perf-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .section-heading {
+      font-size: 20px;
+    }
+    .metrics-split {
+      grid-template-columns: 1fr;
+    }
+    .rank-hero-box {
+      min-height: auto;
+      padding: 18px;
+    }
+    .rank-value {
+      font-size: 38px;
+    }
+    .sub-metrics-stack {
+      flex-direction: row;
+    }
+    .score-box {
+      padding: 14px;
+    }
+    .score-number {
+      font-size: 24px;
+    }
+    .rival-row {
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      padding: 10px 11px;
+      gap: 8px;
+    }
+    .rival-email, .leaderboard-email {
+      font-size: 12px;
+    }
+    .gap-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+    }
+    .footer-bar {
+      font-size: 11px;
+      line-height: 1.4;
+    }
+  }
 </style>
 </head>
 <body>
 <iframe id="loginTransport" name="loginTransport" title="Login transport" style="display:none"></iframe>
-<div class="app">
-<section id="loginScreen" class="login-screen">
-  <div class="login-card">
-    <div class="login-icon">❄️</div>
-    <h1 class="login-title">Winter Contest 2026</h1>
-    <p class="login-subtitle">Enter your email and private passcode to view your combined contest score and leaderboard rank.</p>
-    <label class="input-label" for="emailInput">Email</label>
-    <input id="emailInput" class="login-input" type="email" placeholder="name@example.com" autocomplete="username" spellcheck="false">
-    <label class="input-label" for="passcodeInput">Passcode</label>
-    <input id="passcodeInput" class="login-input" type="password" placeholder="Enter your private passcode" autocomplete="current-password">
-    <button id="loginButton" class="login-button" type="button" onclick="login()">Log In</button>
-    <div id="loginError" class="login-error"></div>
-  </div>
-</section>
 
-<section id="dashboard" class="dashboard">
-  <div class="dashboard-container">
-    <header class="top-header">
-      <div class="brand"><div class="brand-icon">❄️</div><div><div class="brand-title">Winter Contest 2026</div><div class="brand-subtitle">Contest Leaderboard</div></div></div>
-      <button class="logout-button" type="button" onclick="logout()">Logout</button>
-    </header>
-    <main class="dashboard-grid">
-      <section class="card score-card">
-        <div class="section-label">My Performance</div>
-        <h2 id="scoreTitle" class="score-title">Your Score</h2>
-        <div id="scoreEmail" class="score-email">Loading...</div>
-        <div class="score-main">
-          <div class="score-box"><div class="score-box-label">Total Points</div><div><span id="pointsValue" class="score-number">—</span><span class="score-unit">pts</span></div></div>
-          <div class="score-box"><div class="score-box-label">Units</div><div><span id="unitsValue" class="score-number">—</span></div></div>
+<div class="app">
+  <!-- LOGIN SCREEN -->
+  <section id="loginScreen" class="login-screen">
+    <div class="login-card">
+      <div class="login-brand">Mayzing</div>
+      <div class="login-icon">
+        <svg width="36" height="42" viewBox="0 0 44 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 2L23.8 6.2L28.4 6.6L24.9 9.6L26 14.1L22 11.7L18 14.1L19.1 9.6L15.6 6.6L20.2 6.2L22 2Z" fill="#E5C158"/>
+          <path d="M22 11L33 24H27.5L36.5 35H29.5L39 45H5L14.5 35H7.5L16.5 24H11L22 11Z" fill="#0E422E"/>
+          <rect x="19" y="45" width="6" height="5" rx="1" fill="#7C5832"/>
+          <circle cx="19" cy="21" r="1.6" fill="#FDE68A"/>
+          <circle cx="25.5" cy="28" r="1.7" fill="#E5C158"/>
+          <circle cx="16.5" cy="33" r="1.6" fill="#FDE68A"/>
+          <circle cx="26.5" cy="40" r="1.8" fill="#E5C158"/>
+        </svg>
+      </div>
+      <h1 class="login-title">Christmas Contest 2026</h1>
+      <p class="login-subtitle">Enter your email and private passcode to view your combined contest score and leaderboard rank.</p>
+      <label class="input-label" for="emailInput">Email</label>
+      <input id="emailInput" class="login-input" type="email" placeholder="name@example.com" autocomplete="username" spellcheck="false">
+      <label class="input-label" for="passcodeInput">Passcode</label>
+      <input id="passcodeInput" class="login-input" type="password" placeholder="Enter your private passcode" autocomplete="current-password">
+      <button id="loginButton" class="login-button" type="button" onclick="login()">Log In</button>
+      <div id="loginError" class="login-error"></div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="dashboard">
+    <div class="dashboard-container">
+      <header class="top-header">
+        <button class="logout-button" type="button" onclick="logout()">Logout</button>
+        <div class="brand-kicker">Mayzing</div>
+        <div class="title-row">
+          <!-- Left Xmas Tree (Deep Pine Green + Minimal Small Gold Ornaments) -->
+          <svg class="xmas-tree-svg" viewBox="0 0 44 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M22 2L23.8 6.2L28.4 6.6L24.9 9.6L26 14.1L22 11.7L18 14.1L19.1 9.6L15.6 6.6L20.2 6.2L22 2Z" fill="#E5C158"/>
+            <path d="M22 11L33 24H27.5L36.5 35H29.5L39 45H5L14.5 35H7.5L16.5 24H11L22 11Z" fill="#0E422E"/>
+            <rect x="19" y="45" width="6" height="5" rx="1" fill="#7C5832"/>
+            <circle cx="19.5" cy="21" r="1.5" fill="#FDE68A"/>
+            <circle cx="25" cy="28.5" r="1.6" fill="#E5C158"/>
+            <circle cx="16.5" cy="33.5" r="1.5" fill="#FDE68A"/>
+            <circle cx="26" cy="40.5" r="1.6" fill="#E5C158"/>
+          </svg>
+
+          <h1 class="brand-title">Christmas Contest 2026</h1>
+
+          <!-- Right Xmas Tree -->
+          <svg class="xmas-tree-svg" viewBox="0 0 44 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M22 2L23.8 6.2L28.4 6.6L24.9 9.6L26 14.1L22 11.7L18 14.1L19.1 9.6L15.6 6.6L20.2 6.2L22 2Z" fill="#E5C158"/>
+            <path d="M22 11L33 24H27.5L36.5 35H29.5L39 45H5L14.5 35H7.5L16.5 24H11L22 11Z" fill="#0E422E"/>
+            <rect x="19" y="45" width="6" height="5" rx="1" fill="#7C5832"/>
+            <circle cx="24.5" cy="21" r="1.5" fill="#FDE68A"/>
+            <circle cx="18.5" cy="28.5" r="1.6" fill="#E5C158"/>
+            <circle cx="27" cy="33.5" r="1.5" fill="#FDE68A"/>
+            <circle cx="17.5" cy="40.5" r="1.6" fill="#E5C158"/>
+          </svg>
         </div>
-        <div class="rank-box"><div><div class="rank-left-label">Current Rank</div><div id="rankValue" class="rank-value">—</div></div><div id="levelBadge" class="level-badge">Loading</div></div>
-        <div class="progress-section">
-          <div class="progress-header"><div class="progress-title">Progress to next level</div><div id="progressPoints" class="progress-points">—</div></div>
-          <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
-          <div id="nextLevelText" class="next-level">—</div>
+        <div class="brand-dates">Sep 30 – Dec 31 (GMT)</div>
+      </header>
+
+      <main class="dashboard-grid">
+        <!-- LEFT COLUMN: MY PERFORMANCE + NEARBY RIVALS -->
+        <div class="left-column">
+          <section class="card score-card">
+            <div class="perf-header">
+              <div>
+                <h2 class="section-heading">My Performance</h2>
+                <div id="scoreEmail" class="score-email">Loading...</div>
+              </div>
+              <div id="countdownBadge" class="countdown-pill">
+                <span class="countdown-dot"></span>
+                <span id="daysLeftText">— days left</span>
+              </div>
+            </div>
+
+            <div class="metrics-split">
+              <!-- Centerpiece Current Rank -->
+              <div class="rank-hero-box">
+                <div class="rank-hero-label">Current Rank</div>
+                <div id="rankValue" class="rank-value">—</div>
+                <div id="rankGapTag" class="rank-gap-tag">Calculating gap...</div>
+              </div>
+
+              <!-- Points & Units -->
+              <div class="sub-metrics-stack">
+                <div class="score-box">
+                  <div class="score-box-label">Total Points</div>
+                  <div><span id="pointsValue" class="score-number">—</span><span class="score-unit">pts</span></div>
+                </div>
+                <div class="score-box">
+                  <div class="score-box-label">Units</div>
+                  <div><span id="unitsValue" class="score-number">—</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Next Milestone (No Prize Mention, With % Progress & Points Left) -->
+            <div class="milestone-box">
+              <div class="milestone-top">
+                <div id="nextMilestoneTitle" class="milestone-title">Next milestone: — points</div>
+                <div id="progressPoints" class="milestone-ratio">—</div>
+              </div>
+              <div class="progress-track">
+                <div id="progressFill" class="progress-fill"></div>
+              </div>
+              <div class="milestone-bottom">
+                <span id="progressPercentText" class="milestone-percent">0% completed</span>
+                <span id="pointsToUnlockBadge" class="unlock-pill">— pts to unlock</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- NEARBY RIVALS (1-2 Before & After YOU) -->
+          <section class="card rivals-card">
+            <div class="rivals-header">
+              <h3 class="rivals-title">Nearby Rivals</h3>
+              <span class="rivals-subtitle">Direct point gaps</span>
+            </div>
+            <div id="rivalsList" class="rivals-list">
+              <div class="leaderboard-loading">Loading nearby competitors...</div>
+            </div>
+          </section>
         </div>
-      </section>
-      <section class="card leaderboard-card">
-        <div class="leaderboard-header"><div><h2 class="leaderboard-title">Leaderboard</h2><div class="leaderboard-subtitle">Top 10 + your position</div></div><button id="refreshButton" class="refresh-button" type="button" onclick="refreshLeaderboard()" title="Refresh leaderboard">↻</button></div>
-        <div id="leaderboardList" class="leaderboard-list"><div class="leaderboard-loading">Loading leaderboard...</div></div>
-      </section>
-    </main>
-    <div class="footer">Winter Contest 2026</div>
-  </div>
-</section>
+
+        <!-- RIGHT COLUMN: TOP 10 LEADERBOARD -->
+        <section class="card leaderboard-card">
+          <div class="leaderboard-header">
+            <div>
+              <h2 class="leaderboard-title">Leaderboard</h2>
+              <div class="leaderboard-subtitle">Top 10 Standings</div>
+            </div>
+            <button id="refreshButton" class="refresh-button" type="button" onclick="refreshLeaderboard()" title="Refresh leaderboard">↻</button>
+          </div>
+          <div id="leaderboardList" class="leaderboard-list">
+            <div class="leaderboard-loading">Loading leaderboard...</div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer-bar">
+        <span>🔒 This invite-only communication is private and confidential and must not be shared externally.</span>
+      </footer>
+    </div>
+  </section>
 </div>
 
 <script>
@@ -116,14 +867,34 @@ let currentUserRank = 0;
 let currentUserData = null;
 let leaderboardData = [];
 const TOP_COUNT = 10;
-const LEVELS = [
- {name:"Beginner",min:0},{name:"Rookie",min:100},{name:"Rising Star",min:250},
- {name:"Achiever",min:500},{name:"Expert",min:1000},{name:"Master",min:2000},{name:"Champion",min:5000}
-];
-const EMOJIS = ["🏆","🥇","🥈","🥉","🔥","⚡","🚀","❄️","⭐","💎"];
 
-function getLevel(points){let x=LEVELS[0];for(const l of LEVELS){if(points>=l.min)x=l;else break;}return x;}
-function getNextLevel(points){return LEVELS.find(l=>points<l.min)||null;}
+// Milestone point thresholds (strictly points only, no prize labels)
+const MILESTONES = [250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000, 125000];
+
+function getNextMilestone(points) {
+  return MILESTONES.find(m => points < m) || null;
+}
+
+function getPreviousMilestone(points) {
+  let prev = 0;
+  for (const m of MILESTONES) {
+    if (points >= m) prev = m;
+    else break;
+  }
+  return prev;
+}
+
+function updateContestCountdown() {
+  // Contest ends Dec 31, 2026 23:59:59 GMT
+  const endDate = new Date("2026-12-31T23:59:59Z");
+  const now = new Date();
+  const diffMs = endDate - now;
+  const daysLeft = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+  const el = document.getElementById("daysLeftText");
+  if (el) {
+    el.textContent = daysLeft === 1 ? "1 day left" : daysLeft + " days left";
+  }
+}
 
 function postLogin(email, passcode) {
   return new Promise((resolve, reject) => {
@@ -158,7 +929,7 @@ function postLogin(email, passcode) {
     form.target = 'loginTransport';
     form.style.display = 'none';
 
-    [['action','login'],['email',email],['passcode',passcode],['nonce',nonce]].forEach(([key,value]) => {
+    [['action', 'login'], ['email', email], ['passcode', passcode], ['nonce', nonce]].forEach(([key, value]) => {
       const input = document.createElement('input');
       input.type = 'hidden';
       input.name = key;
@@ -200,16 +971,19 @@ async function login() {
     currentUserData = result.profile;
     currentUserRank = Number(result.profile.rank || 0);
     currentUserId = email;
+
+    updateContestCountdown();
     renderPersonalScore(result.profile);
 
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
 
-    // Leaderboard loads after the dashboard is visible; it won't delay login.
     loadLeaderboard(currentUserId, currentUserRank).catch(err => {
       console.error('Leaderboard error:', err);
       document.getElementById('leaderboardList').innerHTML =
         '<div class="leaderboard-error">Unable to load leaderboard. Please refresh.</div>';
+      document.getElementById('rivalsList').innerHTML =
+        '<div class="leaderboard-error">Unable to load nearby rivals.</div>';
     });
   } catch (err) {
     console.error('Login error:', err);
@@ -235,29 +1009,37 @@ function renderPersonalScore(data) {
   const units = Number(data.units || 0);
   const rank = Number(data.rank || 0);
   const email = String(data.email || '');
-  const level = getLevel(points);
-  const next = getNextLevel(points);
+
+  const nextMilestone = getNextMilestone(points);
+  const prevMilestone = getPreviousMilestone(points);
 
   document.getElementById('scoreEmail').textContent = email;
   document.getElementById('pointsValue').textContent = formatNumber(points);
   document.getElementById('unitsValue').textContent = formatNumber(units);
   document.getElementById('rankValue').textContent = '#' + rank;
-  document.getElementById('levelBadge').textContent = level.name;
+  document.getElementById('rankGapTag').textContent = rank === 1 ? '👑 #1 Spot' : 'Target: #' + (rank - 1);
 
-  let progress = 100;
-  if (next) {
-    const range = next.min - level.min;
-    progress = range > 0 ? ((points - level.min) / range) * 100 : 0;
-    progress = Math.max(0, Math.min(100, progress));
-    document.getElementById('progressPoints').textContent =
-      formatNumber(points) + ' / ' + formatNumber(next.min);
-    document.getElementById('nextLevelText').textContent =
-      'Next: ' + next.name + ' at ' + formatNumber(next.min) + ' points';
+  if (nextMilestone) {
+    const span = nextMilestone - prevMilestone;
+    const rawPct = span > 0 ? ((points - prevMilestone) / span) * 100 : (points / nextMilestone) * 100;
+    const pct = Math.max(0, Math.min(100, rawPct));
+    const pctDisplay = pct.toFixed(1).replace(/\.0$/, '');
+    const ptsLeft = Math.max(0, nextMilestone - points);
+
+    document.getElementById('nextMilestoneTitle').textContent =
+      'Next milestone: ' + formatNumber(nextMilestone) + ' points';
+    document.getElementById('progressPoints').innerHTML =
+      '<strong>' + formatNumber(points) + '</strong> / ' + formatNumber(nextMilestone) + ' pts';
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPercentText').textContent = pctDisplay + '% completed';
+    document.getElementById('pointsToUnlockBadge').textContent = formatNumber(ptsLeft) + ' pts to unlock';
   } else {
-    document.getElementById('progressPoints').textContent = 'MAX LEVEL';
-    document.getElementById('nextLevelText').textContent = 'You have reached the highest level.';
+    document.getElementById('nextMilestoneTitle').textContent = 'All milestones unlocked!';
+    document.getElementById('progressPoints').innerHTML = '<strong>' + formatNumber(points) + ' pts</strong>';
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressPercentText').textContent = '100% completed';
+    document.getElementById('pointsToUnlockBadge').textContent = 'Max Milestone Reached';
   }
-  document.getElementById('progressFill').style.width = progress + '%';
 }
 
 function loadLeaderboard(userId, userRank) {
@@ -281,7 +1063,7 @@ function loadLeaderboard(userId, userRank) {
         return;
       }
       leaderboardData = Array.isArray(data.leaderboard) ? data.leaderboard : [];
-      renderLeaderboard(leaderboardData, userId, userRank);
+      renderLeaderboardAndRivals(leaderboardData, userId, userRank);
       resolve(leaderboardData);
     }
     function fail() {
@@ -299,10 +1081,13 @@ function loadLeaderboard(userId, userRank) {
   });
 }
 
-function renderLeaderboard(rows, userId, userRank) {
-  const container = document.getElementById('leaderboardList');
+function renderLeaderboardAndRivals(rows, userId, userRank) {
+  const lbContainer = document.getElementById('leaderboardList');
+  const rivalsContainer = document.getElementById('rivalsList');
+
   if (!Array.isArray(rows) || !rows.length) {
-    container.innerHTML = '<div class="leaderboard-error">No leaderboard data available.</div>';
+    lbContainer.innerHTML = '<div class="leaderboard-error">No leaderboard data available.</div>';
+    rivalsContainer.innerHTML = '<div class="leaderboard-error">No rivals data available.</div>';
     return;
   }
 
@@ -311,41 +1096,80 @@ function renderLeaderboard(rows, userId, userRank) {
     units: Number(r.units || 0),
     points: Number(r.points || 0),
     rank: Number(r.rank || 0)
-  })).filter(r => r.rank > 0).sort((a,b) => a.rank - b.rank);
+  })).filter(r => r.rank > 0).sort((a, b) => a.rank - b.rank);
 
   const ownEmail = String(currentUserData && currentUserData.email || '').toLowerCase();
-  let display = normalized.filter(r => r.rank <= TOP_COUNT);
-  if (ownEmail && !display.some(r => r.email.toLowerCase() === ownEmail)) {
-    const own = normalized.find(r => r.email.toLowerCase() === ownEmail);
-    if (own) display.push(own);
+  const userIndex = normalized.findIndex(r => r.email.toLowerCase() === ownEmail);
+  const userObj = userIndex >= 0 ? normalized[userIndex] : {
+    email: currentUserData ? currentUserData.email : userId,
+    points: Number(currentUserData && currentUserData.points || 0),
+    rank: Number(currentUserData && currentUserData.rank || userRank || 0)
+  };
+
+  // Update dynamic gap badge in Rank Hero Box
+  if (userIndex > 0) {
+    const personAbove = normalized[userIndex - 1];
+    const diffAbove = Math.max(0, personAbove.points - userObj.points);
+    document.getElementById('rankGapTag').textContent =
+      '+' + formatNumber(diffAbove) + ' pts to #' + personAbove.rank;
+  } else if (userObj.rank === 1) {
+    document.getElementById('rankGapTag').textContent = 'Leading the Contest';
   }
-  display.sort((a,b) => a.rank - b.rank);
 
-  let out = '';
-  let previous = null;
-  display.forEach((r, i) => {
-    if (previous !== null && previous <= TOP_COUNT && r.rank > TOP_COUNT) {
-      out += '<div class="leaderboard-separator">YOUR POSITION</div>';
-    }
-    const you = !!ownEmail && r.email.toLowerCase() === ownEmail;
-    out += createLeaderboardRow(r, you, i);
-    previous = r.rank;
+  // 1. Render Nearby Rivals (up to 2 ahead, YOU, and up to 1-2 behind)
+  if (userIndex >= 0) {
+    const startIdx = Math.max(0, userIndex - 2);
+    const endIdx = Math.min(normalized.length - 1, userIndex + 1);
+    const slice = normalized.slice(startIdx, endIdx + 1);
+
+    let rivalsHtml = '';
+    slice.forEach(person => {
+      const isYou = person.email.toLowerCase() === ownEmail;
+      const diff = person.points - userObj.points;
+      let rightBadge = '';
+
+      if (isYou) {
+        rightBadge = '<div class="gap-you">' + formatNumber(person.points) + ' pts</div>';
+      } else if (diff >= 0) {
+        rightBadge = '<div class="gap-pill gap-ahead">+' + formatNumber(diff) + ' pts</div>';
+      } else {
+        rightBadge = '<div class="gap-pill gap-behind">' + formatNumber(diff) + ' pts</div>';
+      }
+
+      rivalsHtml +=
+        '<div class="rival-row' + (isYou ? ' is-you' : '') + '">' +
+          '<div class="rival-rank">#' + person.rank + '</div>' +
+          '<div class="rival-user">' +
+            (isYou ? '<span class="you-badge">YOU</span>' : '') +
+            '<div class="rival-email" title="' + escapeHtml(person.email) + '">' + escapeHtml(person.email) + '</div>' +
+          '</div>' +
+          rightBadge +
+        '</div>';
+    });
+    rivalsContainer.innerHTML = rivalsHtml;
+  } else {
+    rivalsContainer.innerHTML =
+      '<div class="rival-row is-you">' +
+        '<div class="rival-rank">#' + userObj.rank + '</div>' +
+        '<div class="rival-user"><span class="you-badge">YOU</span><div class="rival-email">' + escapeHtml(userObj.email) + '</div></div>' +
+        '<div class="gap-you">' + formatNumber(userObj.points) + ' pts</div>' +
+      '</div>';
+  }
+
+  // 2. Render Top 10 Leaderboard (No emojis, no points, no sticky bottom position bar)
+  const top10 = normalized.filter(r => r.rank <= TOP_COUNT);
+  let lbHtml = '';
+  top10.forEach(r => {
+    const isYou = !!ownEmail && r.email.toLowerCase() === ownEmail;
+    const isFirst = r.rank === 1;
+    lbHtml +=
+      '<div class="leaderboard-row' + (isFirst ? ' rank-1' : '') + (isYou ? ' you' : '') + '">' +
+        '<div class="rank-pill">#' + r.rank + '</div>' +
+        '<div class="leaderboard-email" title="' + escapeHtml(r.email) + '">' + escapeHtml(r.email) + '</div>' +
+        (isYou ? '<span class="you-badge">YOU</span>' : '<span></span>') +
+      '</div>';
   });
-  container.innerHTML = out || '<div class="leaderboard-error">No leaderboard data available.</div>';
-}
-
-function createLeaderboardRow(row, isYou, index) {
-  const rank = Number(row.rank || 0);
-  const emoji = EMOJIS[Math.min(index, EMOJIS.length - 1)] || '⭐';
-  const badge = isYou
-    ? '<div class="mini-emoji you-label">YOU</div>'
-    : '<div class="mini-emoji">' + emoji + '</div>';
-
-  return '<div class="leaderboard-row' + (isYou ? ' you' : '') + '">' +
-    '<div class="leaderboard-rank">#' + rank + '</div>' + badge +
-    '<div class="leaderboard-user"><div class="leaderboard-email" title="' +
-    escapeHtml(row.email) + '">' + escapeHtml(row.email) + '</div></div>' +
-    '<div class="leaderboard-points">' + formatNumber(row.points) + ' pts</div></div>';
+  lbContainer.innerHTML = lbHtml || '<div class="leaderboard-error">No leaderboard data available.</div>';
 }
 
 async function refreshLeaderboard() {
@@ -355,6 +1179,7 @@ async function refreshLeaderboard() {
   button.disabled = true;
   button.textContent = '…';
   try {
+    updateContestCountdown();
     await loadLeaderboard(currentUserId, currentUserRank);
   } catch (e) {
     document.getElementById('leaderboardList').innerHTML =
@@ -377,21 +1202,25 @@ function logout() {
   document.getElementById('loginError').textContent = '';
   document.getElementById('leaderboardList').innerHTML =
     '<div class="leaderboard-loading">Loading leaderboard...</div>';
+  document.getElementById('rivalsList').innerHTML =
+    '<div class="leaderboard-loading">Loading nearby competitors...</div>';
   document.getElementById('pointsValue').textContent = '—';
   document.getElementById('unitsValue').textContent = '—';
   document.getElementById('rankValue').textContent = '—';
   document.getElementById('progressFill').style.width = '0%';
-  document.getElementById('levelBadge').textContent = 'Loading';
 }
 
 function formatNumber(value) {
   const n = Number(value || 0);
   return Number.isFinite(n) ? n.toLocaleString('en-US') : '0';
 }
+
 function escapeHtml(value) {
-  return String(value || '').replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+  return String(value || '').replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
+
+updateContestCountdown();
 </script>
 </body>
 </html>
