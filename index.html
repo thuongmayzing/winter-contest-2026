@@ -429,6 +429,63 @@
     border-radius: 99px;
   }
 
+  /* TEAM SCORECARD CARD (Compact size) */
+  .team-card { padding: 22px 26px; }
+  .team-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .team-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--pine-dark);
+    text-transform: uppercase;
+  }
+  .team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .team-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: var(--bg-subtle);
+    border: 1px solid #E5ECE6;
+    font-size: 13px;
+  }
+  .team-email {
+    font-weight: 700;
+    color: var(--pine-dark);
+  }
+  .team-pts {
+    font-weight: 800;
+    color: var(--pine-main);
+  }
+  .team-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    margin-top: 4px;
+    border-radius: 12px;
+    background: var(--bg-gold-soft);
+    border: 1px solid var(--gold-border);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--pine-dark);
+  }
+  .team-total-pts {
+    font-size: 15px;
+    color: var(--pine-dark);
+  }
+
   /* NEARBY RIVALS CARD */
   .rivals-card { padding: 22px 26px; }
   .rivals-header {
@@ -660,7 +717,7 @@
       font-size: 12px;
       padding: 4px 12px;
     }
-    .score-card, .rivals-card, .leaderboard-card {
+    .score-card, .team-card, .rivals-card, .leaderboard-card {
       padding: 18px 16px;
       border-radius: 18px;
     }
@@ -696,7 +753,7 @@
       padding: 10px 11px;
       gap: 8px;
     }
-    .rival-email, .leaderboard-email {
+    .rival-email, .leaderboard-email, .team-row, .team-total-row {
       font-size: 12px;
     }
     .gap-pill {
@@ -730,7 +787,7 @@
         </svg>
       </div>
       <h1 class="login-title">Christmas Contest 2026</h1>
-      <p class="login-subtitle">Sign in with your Mayzing email account and passcode to track your contest ranking.</p>
+      <p class="login-subtitle">Sign in with your registered email and passcode to track your contest ranking.</p>
       <label class="input-label" for="emailInput">Email</label>
       <input id="emailInput" class="login-input" type="email" placeholder="name@example.com" autocomplete="username" spellcheck="false">
       <label class="input-label" for="passcodeInput">Passcode</label>
@@ -773,7 +830,7 @@
       </header>
 
       <main class="dashboard-grid">
-        <!-- LEFT COLUMN -->
+        <!-- LEFT COLUMN: MY PERFORMANCE + TEAM SCORECARD + NEARBY RIVALS -->
         <div class="left-column">
           <section class="card score-card">
             <div class="perf-header">
@@ -821,6 +878,32 @@
             </div>
           </section>
 
+          <!-- TEAM SCORECARD (Compact) -->
+          <section class="card team-card">
+            <div class="team-header">
+              <h3 class="team-title">Team Scorecard</h3>
+            </div>
+            <div class="team-list">
+              <div class="team-row">
+                <span class="team-email">m**bg@hotmail.com</span>
+                <span class="team-pts">2,400 pts</span>
+              </div>
+              <div class="team-row">
+                <span class="team-email">x**ss@gmail.com</span>
+                <span class="team-pts">1,850 pts</span>
+              </div>
+              <div class="team-row">
+                <span class="team-email">m**68@gmail.com</span>
+                <span class="team-pts">750 pts</span>
+              </div>
+              <div class="team-total-row">
+                <span>Total Team Points:</span>
+                <span class="team-total-pts">5,000 pts</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- NEARBY RIVALS -->
           <section class="card rivals-card">
             <div class="rivals-header">
               <h3 class="rivals-title">Nearby Rivals</h3>
@@ -832,7 +915,7 @@
           </section>
         </div>
 
-        <!-- RIGHT COLUMN -->
+        <!-- RIGHT COLUMN: LEADERBOARD -->
         <section class="card leaderboard-card">
           <div class="leaderboard-header">
             <div>
